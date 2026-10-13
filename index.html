@@ -9200,6 +9200,17 @@ Object.assign(ACT,{'ia-open'(){openIaForm();},'ia-all'(el){
 $$('[data-ic]').forEach(e=>{e.innerHTML=ic(e.dataset.ic,Number(e.dataset.s)||18);});
 renderTabs();renderFilters();renderMain();Cloud.init();
 if(ATTN.length){ATTN.forEach(x=>{UI.notified[x.t.id]=1;});toast(ATTN.length+(ATTN.length===1?' pendência em destaque':' pendências em destaque'));}
+
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').then(registration => {
+        console.log('ServiceWorker registado com sucesso com o âmbito: ', registration.scope);
+      }).catch(err => {
+        console.log('Falha ao registar o ServiceWorker: ', err);
+      });
+    });
+  }
 </script>
 </body>
 </html>
