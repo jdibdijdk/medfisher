@@ -1344,7 +1344,7 @@ button.fx:hover{background:var(--soft);color:var(--ink)}
 .sbar .bar{margin:0}
 #fSpend [hidden]{display:none!important}
 #fSpend .frow{gap:6px}
-.painel{max-width:760px}
+.painel{max-width:1040px}
 .painel .trow{border-bottom:1px solid var(--line2)}
 .painel .trow:last-child{border-bottom:0}
 .painel .mnext{margin-left:auto}
@@ -1415,6 +1415,38 @@ main.wide{max-width:none;padding-left:18px;padding-right:18px}
 .ntrow.off .muted{opacity:.7}
 .ntt{flex-direction:row;align-items:center;gap:10px;max-width:340px}
 .ntt input{max-width:130px}
+
+/* pomodoro e árvore */
+.pmgrid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px;margin-bottom:14px;align-items:start}
+@media (max-width:900px){.pmgrid{grid-template-columns:1fr}}
+.pmc,.gmc{padding:16px 18px}
+.pmc .f,.pmc .addrow{margin-top:8px}
+.pmseg{margin:4px 0 8px}
+.pmdial{position:relative;width:190px;height:190px;margin:6px auto}
+.pmdial svg{width:100%;height:100%}
+.pmdial .bg{fill:none;stroke:var(--line);stroke-width:7}
+.pmdial .fg{fill:none;stroke:var(--acc);stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset .9s linear}
+.pmc[data-ph="short"] .fg,.pmc[data-ph="long"] .fg{stroke:#2F8F63}
+.pmt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.pmt b{font-size:38px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.pmt span{font-size:12px;color:var(--mut)}
+.pmbtns{justify-content:center}
+.pmsub{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--line2)}
+.pmsub span{flex:1;min-width:0;overflow-wrap:anywhere}
+.pmsub.done span{text-decoration:line-through;opacity:.55}
+.pmcfg{margin-top:10px}.pmcfg summary{cursor:pointer;color:var(--mut);font-size:13px}
+.pmcfgg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.gmtree{display:flex;justify-content:center}
+.tree{width:210px;height:220px}
+.tree.mini{width:38px;height:40px}
+.tr-soil{fill:#E6DDD0}.tr-seed{fill:#8A6A47}.tr-trunk{stroke:#8A6A47;stroke-linecap:round;fill:none}
+.tr-leaf{fill:#5FB57A}.tr-leaf2{fill:#49A06A}.tr-leaf3{fill:#7BC995}.tr-fruit{fill:#E5584F}
+html[data-theme="dark"] .tr-soil{fill:#2A2D36}html[data-theme="dark"] .tr-leaf{fill:#4FA56B}html[data-theme="dark"] .tr-leaf2{fill:#3E8F5A}html[data-theme="dark"] .tr-leaf3{fill:#68B882}
+@keyframes trgrow{from{transform:scale(.82);opacity:.4}to{transform:none;opacity:1}}
+.tr-grow{transform-origin:100px 190px;animation:trgrow .9s var(--ease) both}
+.gmname{text-align:center;margin-top:4px}
+.forest{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;margin-top:10px;padding-top:8px;border-top:1px solid var(--line2)}
+@media (prefers-reduced-motion:reduce){.tr-grow{animation:none}.pmdial .fg{transition:none}}
 </style>
 </head>
 <body>
@@ -6937,7 +6969,7 @@ Object.assign(ACT,{
   'view-task'(el){if(!openTaskView(el.dataset.id))toast('Esta tarefa não existe mais.');},
   'edit-task'(el){const id=el.dataset.id;if(UI.openTask===id)UI.back={type:'task',id:id};const t=taskById(id);if(t)openTaskForm({id:id});},
   'toggle-task'(el){
-    const t=taskById(el.dataset.id);if(!t)return;t.done=!t.done;if(t.done&&t.status)delete t.status;save();
+    const t=taskById(el.dataset.id);if(!t)return;t.done=!t.done;t.doneAt=t.done?Date.now():0;if(t.done&&t.status)delete t.status;save();
     if(!$('#modal').hidden&&!UI.openOcc&&!UI.openTask)closeModal();
     rerender();
   },
@@ -8934,6 +8966,131 @@ function driveAuto(){if(Cloud.ready&&(!UI.drvAt||Date.now()-UI.drvAt>30*60e3))dr
 /* ==========================================================================
    38. PAINEL DIÁRIO: só o que pede ação agora
    ========================================================================== */
+/* ==========================================================================
+   PAINEL: POMODORO (com tarefa e subtarefas) E ÁRVORE DE PROGRESSO
+   ========================================================================== */
+const PM_PHASES=[['focus','Foco'],['short','Pausa Curta'],['long','Pausa Longa']];
+function pmGet(){
+  const p=S.prefs.pomo=S.prefs.pomo||{};
+  p.cfg=Object.assign({focus:25,short:5,long:15,every:4},p.cfg||{});
+  p.subs=p.subs||{};p.log=p.log||[];
+  p.cur=Object.assign({taskId:'',title:'',phase:'focus',running:false,endsAt:0,left:0,n:0},p.cur||{});
+  if(!p.cur.left&&!p.cur.running)p.cur.left=pmDur(p,p.cur.phase);
+  return p;
+}
+const pmDur=(p,ph)=>Math.max(1,Number(p.cfg[ph]||25))*60;
+const pmKey=p=>p.cur.taskId||'free';
+function pmLeft(p){return p.cur.running?Math.max(0,Math.round((p.cur.endsAt-Date.now())/1000)):p.cur.left;}
+const pmFmt=s=>pad(Math.floor(s/60))+':'+pad(s%60);
+function pmNext(p,ph){
+  const c=p.cur;
+  if(ph==='focus'){c.n=(c.n||0)+1;c.phase=(c.n%Math.max(1,Number(p.cfg.every)||4)===0)?'long':'short';}
+  else c.phase='focus';
+  c.running=false;c.endsAt=0;c.left=pmDur(p,c.phase);
+}
+function pmComplete(){
+  const p=pmGet(),c=p.cur;if(!c.running)return;
+  const ph=c.phase;
+  if(ph==='focus'){
+    const t=c.taskId&&taskById(c.taskId);
+    p.log.push({d:todayISO(),at:Date.now(),min:Math.round(pmDur(p,'focus')/60),title:t?t.title:(c.title||''),taskId:c.taskId||''});
+    if(p.log.length>500)p.log=p.log.slice(-500);
+  }
+  pmNext(p,ph);save();
+  ntFire(ph==='focus'?'Foco concluído':'Pausa terminou',ph==='focus'?'Hora da '+(c.phase==='long'?'pausa longa.':'pausa curta.'):'Vamos para o próximo foco?','pomodoro');
+  if(UI.tab==='painel')renderMain();
+}
+function pmTick(){
+  const p=S.prefs.pomo;if(!p||!p.cur||!p.cur.running)return;
+  const l=pmLeft(p);
+  if(l<=0){pmComplete();return;}
+  const el=$('#pmTime');if(el){el.textContent=pmFmt(l);const r=$('#pmRing');if(r){const tot=pmDur(p,p.cur.phase),c=2*Math.PI*54;r.style.strokeDashoffset=(c*(1-(tot-l)/tot)).toFixed(1);}}
+}
+setInterval(pmTick,1000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')pmTick();});
+function pmHTML(){
+  const p=pmGet(),c=p.cur,left=pmLeft(p),tot=pmDur(p,c.phase),circ=2*Math.PI*54;
+  const tasks=S.tasks.filter(t=>!t.done||t.id===c.taskId);
+  const subs=p.subs[pmKey(p)]||[],dn=subs.filter(s=>s.done).length;
+  const today=p.log.filter(e=>e.d===todayISO()),mins=today.reduce((s,e)=>s+e.min,0);
+  const cur=c.taskId&&taskById(c.taskId);
+  return '<section class="card pmc" data-ph="'+c.phase+'"><div class="phead"><h3>'+ic('clock',17)+' Pomodoro</h3><span class="muted small">'+today.length+(today.length===1?' Ciclo':' Ciclos')+' Hoje · '+mins+' Min</span></div>'+
+    '<div class="seg pmseg">'+PM_PHASES.map(x=>'<button type="button" class="'+(c.phase===x[0]?'on':'')+'" data-a="pm-phase" data-v="'+x[0]+'">'+x[1]+'</button>').join('')+'</div>'+
+    '<div class="pmdial"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" class="bg"/><circle id="pmRing" cx="60" cy="60" r="54" class="fg" transform="rotate(-90 60 60)" style="stroke-dasharray:'+circ.toFixed(1)+';stroke-dashoffset:'+(circ*(1-(tot-left)/tot)).toFixed(1)+'"/></svg><div class="pmt"><b id="pmTime">'+pmFmt(left)+'</b><span>'+PM_PHASES.find(x=>x[0]===c.phase)[1]+'</span></div></div>'+
+    '<div class="addrow pmbtns"><button class="btn primary" data-a="pm-toggle">'+(c.running?'Pausar':(left<tot?'Continuar':'Iniciar'))+'</button><button class="btn" data-a="pm-reset">Reiniciar</button><button class="btn" data-a="pm-skip">Pular</button></div>'+
+    '<label class="f"><span>Tarefa em foco</span><select data-pm="task"><option value="">Foco livre (sem tarefa)</option>'+tasks.map(t=>'<option value="'+t.id+'" '+(t.id===c.taskId?'selected':'')+'>'+esc(t.title)+'</option>').join('')+'</select></label>'+
+    (c.taskId?'':'<label class="f"><span>No que vou focar?</span><input type="text" data-pm="title" value="'+esc(c.title)+'" placeholder="Ex.: resumo de cardiologia" autocomplete="off"></label>')+
+    '<div class="pmsubs"><div class="sechead" style="margin:6px 0">Subtarefas <span class="count">'+dn+'/'+subs.length+'</span></div>'+
+    subs.map(s=>'<div class="pmsub '+(s.done?'done':'')+'"><button class="chk sm '+(s.done?'on':'')+'" data-a="pm-sub" data-id="'+s.id+'" aria-label="Concluir subtarefa">'+ic('check',12)+'</button><span>'+esc(s.t)+'</span><button class="icon-btn sm" data-a="pm-subdel" data-id="'+s.id+'" aria-label="Remover subtarefa">'+ic('x',13)+'</button></div>').join('')+
+    '<div class="addrow"><input type="text" id="pmSubNew" placeholder="Nova subtarefa" autocomplete="off"><button class="btn sm primary" data-a="pm-addsub">'+ic('plus',14)+' Adicionar</button></div>'+
+    (cur&&subs.length&&dn===subs.length&&!cur.done?'<button class="btn sm" data-a="pm-finish-task">'+ic('check',14)+' Concluir a tarefa "'+esc(cur.title)+'"</button>':'')+'</div>'+
+    '<details class="pmcfg"><summary>Ajustar Tempos</summary><div class="pmcfgg">'+[['focus','Foco (min)'],['short','Pausa Curta (min)'],['long','Pausa Longa (min)'],['every','Pausa Longa a Cada (ciclos)']].map(x=>'<label class="f"><span>'+x[1]+'</span><input type="number" min="1" max="180" data-pmc="'+x[0]+'" value="'+p.cfg[x[0]]+'"></label>').join('')+'</div></details></section>';
+}
+Object.assign(ACT,{
+  'pm-toggle'(){const p=pmGet(),c=p.cur;if(c.running){c.left=pmLeft(p);c.running=false;c.endsAt=0;}else{if(c.left<=0)c.left=pmDur(p,c.phase);c.running=true;c.endsAt=Date.now()+c.left*1000;}save();renderMain();},
+  'pm-reset'(){const p=pmGet(),c=p.cur;c.running=false;c.endsAt=0;c.left=pmDur(p,c.phase);save();renderMain();},
+  'pm-skip'(){const p=pmGet(),c=p.cur;c.phase=c.phase==='focus'?'short':'focus';c.running=false;c.endsAt=0;c.left=pmDur(p,c.phase);save();renderMain();},
+  'pm-phase'(el){const p=pmGet(),c=p.cur;c.phase=el.dataset.v;c.running=false;c.endsAt=0;c.left=pmDur(p,c.phase);save();renderMain();},
+  'pm-addsub'(){const p=pmGet(),i=$('#pmSubNew'),v=i&&i.value.trim();if(!v){if(i)i.focus();return;}const k=pmKey(p);(p.subs[k]=p.subs[k]||[]).push({id:uid(),t:v,done:false});save();renderMain();const n=$('#pmSubNew');if(n)n.focus();},
+  'pm-sub'(el){const p=pmGet(),s=(p.subs[pmKey(p)]||[]).find(x=>x.id===el.dataset.id);if(!s)return;s.done=!s.done;s.doneAt=s.done?Date.now():0;save();renderMain();},
+  'pm-subdel'(el){const p=pmGet(),k=pmKey(p);p.subs[k]=(p.subs[k]||[]).filter(x=>x.id!==el.dataset.id);save();renderMain();},
+  'pm-finish-task'(){const p=pmGet(),t=taskById(p.cur.taskId);if(!t)return;t.done=true;t.doneAt=Date.now();p.cur.taskId='';save();toast('Tarefa concluída.');renderMain();}
+});
+document.addEventListener('change',e=>{const t=e.target;if(!t||!t.dataset)return;
+  if(t.dataset.pm==='task'){const p=pmGet();p.cur.taskId=t.value;save();renderMain();}
+  else if(t.dataset.pm==='title'){pmGet().cur.title=t.value.trim();save();}
+  else if(t.dataset.pmc){const p=pmGet(),v=Math.max(1,Math.min(180,Number(t.value)||1));p.cfg[t.dataset.pmc]=v;if(!p.cur.running&&t.dataset.pmc===p.cur.phase)p.cur.left=pmDur(p,p.cur.phase);save();renderMain();}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target&&e.target.id==='pmSubNew'){e.preventDefault();ACT['pm-addsub']();}});
+
+/* ----- árvore: cada atividade concluída faz a árvore crescer ----- */
+const GM_TREE=40,GM_STAGES=[[0,'Semente'],[4,'Broto'],[10,'Muda'],[18,'Árvore Jovem'],[26,'Árvore Adulta'],[34,'Árvore Florida']];
+const GM_W={evento:3,tarefa:3,habito:2,pomodoro:2,sub:1};
+function gmXP(){
+  const T=todayISO();let tot=0,today=0,parts={evento:0,tarefa:0,habito:0,pomodoro:0,sub:0};
+  const add=(k,d)=>{const n=GM_W[k];tot+=n;parts[k]+=n;if(d===T)today+=n;};
+  const dOf=ts=>{const n=Number(ts);return n>1e11?toISO(new Date(n)):'';};
+  S.acts.forEach(a=>{if(quickOf(a))return;Object.keys(a.done||{}).forEach(k=>add('evento',dOf(a.done[k])));});
+  S.tasks.forEach(t=>{if(t.done)add('tarefa',dOf(t.doneAt));});
+  S.habits.forEach(h=>(h.log||[]).forEach(d=>add('habito',d)));
+  const p=pmGet();p.log.forEach(e=>add('pomodoro',e.d));
+  Object.keys(p.subs).forEach(k=>p.subs[k].forEach(s=>{if(s.done)add('sub',dOf(s.doneAt));}));
+  return {tot:tot,today:today,parts:parts};
+}
+function gmStage(inTree){let s=0;GM_STAGES.forEach((x,i)=>{if(inTree>=x[0])s=i;});return s;}
+function treeSVG(stage,mini){
+  const g=(n,x,y,r,c)=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" class="'+c+'"/>';
+  let h='<svg class="tree'+(mini?' mini':'')+'" viewBox="0 0 200 210" role="img" aria-label="Árvore, fase '+stage+'"><ellipse cx="100" cy="190" rx="70" ry="10" class="tr-soil"/>';
+  const trunk=[0,26,48,72,92,104][Math.min(stage,5)];
+  if(stage===0)h+='<ellipse cx="100" cy="182" rx="9" ry="6" class="tr-seed"/>';
+  else{
+    h+='<g class="tr-grow"><path d="M100 190 L100 '+(190-trunk)+'" class="tr-trunk" style="stroke-width:'+(5+stage*2.2)+'"/>';
+    if(stage===1)h+='<ellipse cx="90" cy="'+(190-trunk-2)+'" rx="12" ry="6" transform="rotate(-25 90 '+(190-trunk-2)+')" class="tr-leaf"/><ellipse cx="110" cy="'+(190-trunk-4)+'" rx="12" ry="6" transform="rotate(25 110 '+(190-trunk-4)+')" class="tr-leaf2"/>';
+    if(stage===2)h+=g(0,100,190-trunk-6,20,'tr-leaf')+g(0,84,190-trunk+8,14,'tr-leaf2')+g(0,116,190-trunk+8,14,'tr-leaf2');
+    if(stage>=3){const cy=190-trunk,R=[0,0,0,30,38,44][Math.min(stage,5)];
+      h+=g(0,100,cy-R*.35,R,'tr-leaf')+g(0,100-R*.7,cy+R*.2,R*.7,'tr-leaf2')+g(0,100+R*.7,cy+R*.2,R*.7,'tr-leaf2');
+      if(stage>=4)h+=g(0,100-R*.4,cy-R*.9,R*.55,'tr-leaf3')+g(0,100+R*.45,cy-R*.8,R*.5,'tr-leaf3');
+      if(stage>=5)[[-.5,-.2],[.4,-.5],[.1,.35],[-.15,-.8],[.65,.1],[-.75,.25]].forEach(f=>{h+=g(0,100+f[0]*R*1.3,cy+f[1]*R*1.1,4.2,'tr-fruit');});}
+    h+='</g>';
+  }
+  return h+'</svg>';
+}
+function gmTreeHTML(){
+  const x=gmXP(),k=Math.floor(x.tot/GM_TREE),inT=x.tot%GM_TREE,st=gmStage(inT),nxt=GM_STAGES[st+1],need=(nxt?nxt[0]:GM_TREE)-inT;
+  const seen=S.prefs.gmSeen,key=k*GM_STAGES.length+st;
+  if(seen===undefined||seen===null){S.prefs.gmSeen=key;}
+  else if(key>seen){S.prefs.gmSeen=key;save();setTimeout(()=>toast(st===0?'Uma árvore completa! Nasceu uma nova semente.':'Sua árvore cresceu: '+GM_STAGES[st][1]+'.'),300);}
+  else if(key<seen){S.prefs.gmSeen=key;}
+  const forest=k?'<div class="forest" title="'+k+(k===1?' árvore completa':' árvores completas')+'">'+Array.from({length:Math.min(k,12)},()=>treeSVG(5,true)).join('')+(k>12?'<span class="muted small">+'+(k-12)+'</span>':'')+'</div>':'';
+  const pr=x.parts;
+  return '<section class="card gmc"><div class="phead"><h3>'+ic('sprout',17)+' Minha Árvore</h3><span class="muted small">+'+x.today+' XP Hoje</span></div>'+
+    '<div class="gmtree" data-st="'+st+'">'+treeSVG(st)+'</div>'+
+    '<div class="gmname"><b>'+GM_STAGES[st][1]+'</b><span class="muted small"> · Árvore Nº '+(k+1)+'</span></div>'+
+    '<div class="bar" style="margin:8px 0 4px"><i style="width:'+(inT/GM_TREE*100).toFixed(1)+'%"></i></div>'+
+    '<div class="muted small">'+inT+' de '+GM_TREE+' XP · faltam '+need+' XP '+(nxt?'para '+nxt[1]:'para completar a árvore')+'</div>'+forest+
+    '<details class="pmcfg"><summary>Como a árvore cresce</summary><div class="small muted" style="line-height:1.6">Evento concluído: +3 XP ('+pr.evento+')<br>Tarefa concluída: +3 XP ('+pr.tarefa+')<br>Hábito feito: +2 XP ('+pr.habito+')<br>Pomodoro de foco: +2 XP ('+pr.pomodoro+')<br>Subtarefa concluída: +1 XP ('+pr.sub+')<br>A cada '+GM_TREE+' XP uma árvore fica completa e vai para a sua floresta.</div></details></section>';
+}
+
 function renderPainel(){
   const t=todayISO(),end=addISO(t,6),H=[];
   const tasks=S.tasks.filter(x=>!x.done&&tDue(x)&&tDue(x)<=t).sort((a,b)=>(tDue(a)+(tDueTime(a)||'99'))<(tDue(b)+(tDueTime(b)||'99'))?-1:1);
@@ -8947,6 +9104,7 @@ function renderPainel(){
   if(bills.length)H.push(sec('wallet','Contas que vencem nesta semana',bills.length,bills.map(e=>finRow(e)).join('')));
   const d=parseISO(t);
   return '<div class="painel"><h2 class="vt" style="margin:0 0 4px">Hoje, '+WDL[d.getDay()]+' '+fmtDM(t)+'</h2><p class="muted small" style="margin:0 0 14px">Só o que pede ação agora.</p>'+
+    '<div class="pmgrid">'+pmHTML()+gmTreeHTML()+'</div>'+
     (H.length?H.join(''):'<div class="empty">Nada exige ação agora.<br><button class="btn" data-a="tab" data-v="semana">'+ic('calendar',15)+' Ver a semana</button></div>')+'</div>';
 }
 
@@ -9200,17 +9358,6 @@ Object.assign(ACT,{'ia-open'(){openIaForm();},'ia-all'(el){
 $$('[data-ic]').forEach(e=>{e.innerHTML=ic(e.dataset.ic,Number(e.dataset.s)||18);});
 renderTabs();renderFilters();renderMain();Cloud.init();
 if(ATTN.length){ATTN.forEach(x=>{UI.notified[x.t.id]=1;});toast(ATTN.length+(ATTN.length===1?' pendência em destaque':' pendências em destaque'));}
-
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').then(registration => {
-        console.log('ServiceWorker registado com sucesso com o âmbito: ', registration.scope);
-      }).catch(err => {
-        console.log('Falha ao registar o ServiceWorker: ', err);
-      });
-    });
-  }
 </script>
 </body>
 </html>
