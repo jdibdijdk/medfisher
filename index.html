@@ -1530,6 +1530,7 @@ html[data-theme="dark"] .tr-soil{fill:#2A2D36}html[data-theme="dark"] .tr-leaf{f
 .pacerow{display:flex;flex-direction:column;gap:2px;padding:9px 0;border-bottom:1px solid var(--line2);cursor:pointer}.pacerow:last-child{border-bottom:0}
 .dp.rv{background:transparent;border:1px dashed var(--line3);color:var(--mut);cursor:pointer}.dp.rv .ic{vertical-align:-1px}
 .rvrow{border-style:dashed;background:transparent}.rvrow.done{opacity:.5}
+.bfed{min-height:44px!important}.bmv .bmt{padding:0;white-space:normal}.bmf{display:block}.bmf .bmn{display:block;margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -1915,11 +1916,59 @@ const Media={cache:{},done:{},be:null,ok:false,rt:null,
     walk(S);
     if(n&&typeof rerender==='function'){try{const a=document.activeElement;if(!(a&&(a.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))))rerender();}catch(e){}}
     try{Store.set(Store.mem||JSON.stringify(S));}catch(e){}
+    this.sched();
   }};
+/* Mídia no Google Drive: depois de guardada no aparelho, cada imagem/PDF é enviada à pasta do Drive (pelo Apps Script) com o mesmo ID.
+   Só quando o Drive confirma é que a sincronização passa a levar a referência "media:ID" no lugar do arquivo. Outros aparelhos baixam pelo ID. */
+Object.assign(Media,{up:(function(){try{return JSON.parse(localStorage.getItem('rotina_mediaup')||'{}');}catch(e){return {};}})(),upq:{},tries:{},fail:{},pumping:false,scanning:false,st:null,
+  RE:/data:(?:image\/[a-z0-9.+-]+|application\/pdf);base64,[A-Za-z0-9+\/=]{3000,}/g,
+  upSave(){try{localStorage.setItem('rotina_mediaup',JSON.stringify(this.up));}catch(e){}},
+  stripRemote(json){
+    if(typeof json!=='string'||json.length<4000||!WEB_APP_URL)return json;
+    const out=json.replace(this.RE,m=>{const id=Media.hash(m);if(Media.up[id])return 'media:'+id;if(!Media.upq[id]&&(Media.tries[id]||0)<4){Media.upq[id]=m;Media.cache[id]=Media.cache[id]||m;}return m;});
+    if(Object.keys(this.upq).length)setTimeout(()=>Media.pump(),50);
+    return out;
+  },
+  async pump(){
+    if(this.pumping||!WEB_APP_URL||(typeof navigator!=='undefined'&&navigator.onLine===false))return;
+    const ids=Object.keys(this.upq);if(!ids.length)return;this.pumping=true;
+    const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+    try{
+      for(const id of ids.slice(0,3)){
+        const data=this.upq[id];this.tries[id]=(this.tries[id]||0)+1;
+        try{await fetch(WEB_APP_URL+'?action=putmedia',{method:'POST',body:JSON.stringify({n:id,d:data}),headers:{'Content-Type':'text/plain'},mode:'no-cors'});}catch(e){continue;}
+        for(const w of [1500,3500,7000,14000]){
+          await sleep(w);
+          try{const r=await fetch(WEB_APP_URL+'?action=hasmedia&name='+id+'&t='+Date.now()),j=await r.json();if(j&&j.ok&&j.has){this.up[id]=1;delete this.upq[id];this.upSave();break;}}catch(e){}
+        }
+      }
+    }finally{this.pumping=false;}
+    if(Object.keys(this.upq).length&&ids.some(i=>this.upq[i]&&this.tries[i]<4))setTimeout(()=>Media.pump(),30000);
+  },
+  sched(){clearTimeout(this.st);this.st=setTimeout(()=>Media.scan(),1200);},
+  async scan(){
+    const s=Store.mem||'';if(this.scanning||!WEB_APP_URL||s.indexOf('media:m')<0)return;
+    const ids=Array.from(new Set((s.match(/media:m[0-9a-z]+/g)||[]).map(x=>x.slice(6)))).filter(id=>!this.cache[id]&&Date.now()-(this.fail[id]||0)>60000);
+    if(!ids.length)return;this.scanning=true;let got=0;
+    try{
+      for(const id of ids){
+        try{const r=await fetch(WEB_APP_URL+'?action=getmedia&name='+id+'&t='+Date.now()),j=await r.json();
+          if(j&&j.ok&&j.d){this.cache[id]=j.d;this.up[id]=1;this.done[id]=0;got++;if(this.be)this.be.put(id,j.d).then(()=>{this.done[id]=1;}).catch(()=>{});}else this.fail[id]=Date.now();}
+        catch(e){this.fail[id]=Date.now();}
+      }
+    }finally{this.scanning=false;}
+    if(got){this.upSave();this.hydrate();}
+  },
+  hydrate(){
+    let n=0;const walk=o=>{if(!o||typeof o!=='object')return;for(const k in o){const v=o[k];if(typeof v==='string'){if(v.indexOf('media:m')>=0){const r=v.replace(/media:(m[0-9a-z]+)/g,(x,id)=>Media.cache[id]||x);if(r!==v){o[k]=r;n++;}}}else walk(v);}};
+    walk(S);
+    if(n){try{const a=document.activeElement;if(!(a&&(a.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))))rerender();}catch(e){}try{Store.set(JSON.stringify(S));}catch(e){}}
+  }
+});
 const STORE_KEY='rotina_estudos_v2';
 const Store={mem:null,fail:false,
   get(){try{return localStorage.getItem(STORE_KEY);}catch(e){return this.mem;}},
-  set(v){this.mem=v;try{localStorage.setItem(STORE_KEY,Media.strip(v));this.fail=false;}catch(e){this.fail=true;}}
+  set(v){this.mem=v;if(v.indexOf('media:m')>=0)Media.sched();try{localStorage.setItem(STORE_KEY,Media.strip(v));this.fail=false;}catch(e){this.fail=true;}}
 };
 let S;
 (function(){let raw=null;try{raw=Store.get();S=normalize(raw?JSON.parse(raw):null);}catch(e){S=normalize(null);}if(!raw)Store.set(JSON.stringify(S));})();
@@ -2239,7 +2288,7 @@ const Cloud={
     this.pushing=true;clearTimeout(this.timer);this.timer=null;this.setStatus('syncing');
     const sent=S.savedAt;
     try{
-      const body=JSON.stringify(this.force?Object.assign({},S,{allowEmpty:true,allowLoss:true}):S);
+      const body=Media.stripRemote(JSON.stringify(this.force?Object.assign({},S,{allowEmpty:true,allowLoss:true}):S));
       const res=await this.call('save',body);
       if(res&&res.status==='refused'&&res.motivo==='perda'){ // a planilha não aceita encolher de repente: pergunta
         this.hold={R:null,rs:0,ld:hasData(S),rd:this.remoteN==null?null:this.remoteN,why:'loss-push',key:'lp|'+sent,
@@ -4073,7 +4122,7 @@ function noteFieldsText(n){
     (n.exams||[]).concat(n.req||[]).forEach(e=>{x+=' '+e.name+' '+e.why+' '+e.result+' '+(e.params||[]).map(q=>q.name+' '+q.value+' '+q.ref).join(' ');});
     (n.rx||[]).forEach(r=>{x+=' '+r.drug+' '+r.dose+' '+r.use;});PLAN_LISTS.forEach(l=>{x+=' '+(n[l[0]]||[]).join(' ');});
   }
-  if(n.type==='bula'){x+=' '+n.cls+' '+(n.meds||[]).map(m=>m.name).join(' ');BULA_SECS.forEach(s=>{const b=n.bf[s[0]];x+=' '+b.gen+' '+Object.keys(b.meds).map(k=>b.meds[k]).join(' ');});}
+  if(n.type==='bula'){x+=' '+n.cls+' '+(n.meds||[]).map(m=>m.name).join(' ');BULA_SECS.forEach(s=>{const b=n.bf[s[0]];x+=' '+richText(b.gen)+' '+Object.keys(b.meds).map(k=>richText(b.meds[k])).join(' ');});}
   return x;
 }
 function noteImgs(o,max){
@@ -4206,7 +4255,7 @@ function noteViewHTML(n){
     h+='<input id="ntitle" class="ntitle" value="'+esc(n.title)+'" placeholder="'+(isQ?'Título da questão (opcional)':isC?'Título do caso':isF?'Título do fluxograma':isB?(n.kind==='classe'?'Nome da classe':'Nome do medicamento'):'Título da nota')+'" autocomplete="off">'+
       '<div class="nmeta"><label class="f">Pasta<select id="nfolder">'+folderOptions(n.folderId)+'</select></label><div class="f"><span>Categoria</span>'+catPickHTML('ncat',n.catId)+'</div>'+
       '<div class="f"><span>Contagem regressiva <small>data e nome</small></span><div class="frow" style="flex-wrap:nowrap"><input type="date" id="ncd" value="'+esc((n.cd&&n.cd.date)||'')+'" style="flex:1"><input id="ncdl" value="'+esc((n.cd&&n.cd.label)||'')+'" style="flex:1" autocomplete="off"><button type="button" class="icon-btn sm" data-a="n-cd-clear" title="Remover contagem" aria-label="Remover contagem">'+ic('x',14)+'</button></div></div></div>'+
-      (isQ?qEditMetaHTML(n):'')+(isF||isB?'':noteToolbarHTML());
+      (isQ?qEditMetaHTML(n):'')+(isF?'':noteToolbarHTML());
   }else{
     h+='<h2 class="vt" style="margin-top:4px">'+esc(n.title||(isQ?'Questão':isC?'Caso clínico':isF?'Fluxograma':isB?'Bulário':'Sem título'))+'</h2><div class="nmetarow" style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;align-items:center">'+(isQ?'<span class="tag outline">Questão</span>':isC?'<span class="tag outline">Caso clínico</span>':isF?'<span class="tag outline">Fluxograma</span>':isB?'<span class="tag outline">'+(n.kind==='classe'?'Classe':'Medicamento')+'</span>':'')+(isQ?qMetaChips(n):'')+(n.catId?tagHTML(n.catId):'')+cdChipHTML(n.cd)+noteTags(n).map(tagChip).join('')+(n.folderId?'<span class="meta mi" style="font-size:13px;color:var(--mut)">'+ic('folder',13)+esc(folderPath(n.folderId).join(' › '))+'</span>':'')+'<span class="muted small">Atualizada '+(n.updated?fmtDM(toISO(new Date(n.updated))):'')+'</span></div>';
   }
@@ -4229,7 +4278,7 @@ function bulaSnippet(o){
   const t=[noteText({html:o.mec||''})];
   if(o.kind==='classe')t.push((o.meds||[]).map(m=>m.name).filter(Boolean).join(', '));
   else if(o.cls)t.push('Classe: '+o.cls);
-  BULA_SECS.forEach(s=>{const b=o.bf&&o.bf[s[0]];if(b&&b.gen)t.push(b.gen);});
+  BULA_SECS.forEach(s=>{const b=o.bf&&o.bf[s[0]];if(b&&b.gen)t.push(richText(b.gen));});
   return t.filter(Boolean).join(' · ');
 }
 function bulaClasses(){return S.notes.filter(x=>x.type==='bula'&&x.kind==='classe'&&x.title);}
@@ -4240,7 +4289,7 @@ function bulaBodyHTML(n,edit,ed){
   if(edit){
     h+='<div class="frow" style="margin:6px 0 12px">'+[['med','Medicamento'],['classe','Classe']].map(k=>'<button type="button" class="chip '+(n.kind===k[0]?'on':'')+'" data-a="bula-kind" data-v="'+k[0]+'">'+k[1]+'</button>').join('')+'</div>';
     if(!isC)h+='<label class="f">Classe<input id="bcls" list="bclsdl" value="'+esc(n.cls)+'" placeholder="Ex.: Inibidores da ECA" autocomplete="off"><datalist id="bclsdl">'+bulaClasses().map(c=>'<option value="'+esc(c.title)+'">').join('')+'</datalist></label>';
-    else h+='<div class="obj olist"><div class="obj-h">Medicações da classe</div>'+(n.meds.length?n.meds.map(m=>'<div class="bmrow"><input data-bmn="'+m.id+'" value="'+esc(m.name)+'" placeholder="Nome do medicamento" autocomplete="off" aria-label="Medicamento"><button type="button" class="icon-btn sm" data-a="bula-mdel" data-id="'+m.id+'" aria-label="Remover medicamento">'+ic('x',14)+'</button></div>').join(''):'<div class="muted small">Adicione os medicamentos desta classe: cada um ganha um campo próprio em todos os tópicos abaixo.</div>')+'<button type="button" class="btn sm" data-a="bula-madd">'+ic('plus',14)+' Medicamento</button></div>';
+    else h+='<div class="obj bmlist"><div class="obj-h">Medicações da classe</div>'+(n.meds.length?n.meds.map(m=>'<div class="bmrow"><input data-bmn="'+m.id+'" value="'+esc(m.name)+'" placeholder="Nome do medicamento" autocomplete="off" aria-label="Medicamento"><button type="button" class="icon-btn sm" data-a="bula-mdel" data-id="'+m.id+'" aria-label="Remover medicamento">'+ic('x',14)+'</button></div>').join(''):'<div class="muted small">Adicione os medicamentos desta classe: cada um ganha um campo próprio em todos os tópicos abaixo.</div>')+'<button type="button" class="btn sm" data-a="bula-madd">'+ic('plus',14)+' Medicamento</button></div>';
   }else{
     if(!isC&&n.cls){const c=bulaClasses().find(x=>x.title.toLowerCase()===n.cls.toLowerCase());h+='<div class="bcls" data-sec="meds">Classe: '+(c?'<a href="#" data-a="n-open" data-k="bula" data-id="'+c.id+'">'+esc(n.cls)+'</a>':esc(n.cls))+'</div>';}
     if(isC&&meds.length)h+='<div class="bmeds" data-sec="meds">'+meds.map(m=>{const mn=S.notes.find(x=>x.type==='bula'&&x.kind==='med'&&x.title.toLowerCase()===m.name.trim().toLowerCase());return mn?'<a class="tag outline" href="#" data-a="n-open" data-k="bula" data-id="'+mn.id+'">'+esc(m.name)+'</a>':'<span class="tag outline">'+esc(m.name)+'</span>';}).join('')+'</div>';
@@ -4248,12 +4297,12 @@ function bulaBodyHTML(n,edit,ed){
   if(edit||has('mec'))h+='<section class="qsec bula-sec" data-sec="mec"><h5>'+ic(BULA_ICO.mec,15)+' Mecanismo de Ação</h5>'+ed('mec','ned_mec','Como o fármaco ou a classe age…')+'</section>';
   BULA_SECS.forEach(s=>{
     const k=s[0],b=n.bf[k],fields=[];
-    if(edit||b.gen)fields.push([isC?'Geral da classe':'',b.gen,'',s[2]]);
-    if(isC)meds.forEach(m=>{const v=b.meds[m.id]||'';if(edit||v)fields.push([m.name,v,m.id,s[2]]);});
+    if(edit||!richEmpty(b.gen))fields.push([isC?'Geral da classe':'',b.gen,'',s[2]]);
+    if(isC)meds.forEach(m=>{const v=b.meds[m.id]||'';if(edit||!richEmpty(v))fields.push([m.name,v,m.id,s[2]]);});
     if(!fields.length)return;
     h+='<section class="qsec bula-sec" data-sec="'+k+'"><h5>'+ic(BULA_ICO[k],15)+' '+s[1]+'</h5>'+fields.map(f=>edit?
-      '<label class="f bmf">'+(f[0]?'<span class="bmn">'+esc(f[0])+'</span>':'')+'<textarea class="bft" rows="1" data-bf="'+k+'" data-bm="'+f[2]+'" placeholder="'+esc(f[3])+'">'+esc(f[1])+'</textarea></label>':
-      '<div class="bmv">'+(f[0]?'<b class="bmn">'+esc(f[0])+'</b>':'')+'<div class="bmt">'+esc(f[1])+'</div></div>').join('')+'</section>';
+      '<div class="f bmf">'+(f[0]?'<span class="bmn">'+esc(f[0])+'</span>':'')+'<div class="ned editing bfed" contenteditable="true" spellcheck="true" data-bf="'+k+'" data-bm="'+f[2]+'" data-ph="'+esc(f[3])+'">'+cleanHTML(richHTML(f[1]))+'</div></div>':
+      '<div class="bmv">'+(f[0]?'<b class="bmn">'+esc(f[0])+'</b>':'')+'<div class="ned bmt">'+richHTML(f[1])+'</div></div>').join('')+'</section>';
   });
   if(edit||has('pearls'))h+='<section class="qsec bula-sec" data-sec="pearls"><h5>'+ic(BULA_ICO.pearls,15)+' Pérolas Clínicas</h5>'+ed('pearls','ned_pearls','O que vale lembrar na prática…')+'</section>';
   h+='<div class="frow" style="margin:14px 0"><button type="button" class="btn" data-a="bula-cards">'+ic('cards',15)+' Transformar em flashcards</button></div>';
@@ -4261,10 +4310,10 @@ function bulaBodyHTML(n,edit,ed){
 }
 function bulaCardsFor(n){
   const T=s=>String(s||'').trim(),out=[],name=T(n.title)||'Sem nome',meds=(n.meds||[]).filter(m=>T(m.name));
-  const mec=T(noteText({html:n.mec||''})),per=T(noteText({html:n.pearls||''}));
-  const q=(f,b)=>{if(T(b))out.push({front:f,back:T(b)});};
+  const mec=n.mec||'',per=n.pearls||'';
+  const q=(f,b)=>{if(!richEmpty(b))out.push({front:f,back:richHTML(b)});};
   if(n.kind==='classe'){
-    if(meds.length)q('Quais medicamentos fazem parte da classe '+name+'?',meds.map(m=>'• '+T(m.name)).join('\n'));
+    if(meds.length)q('Quais medicamentos fazem parte da classe '+name+'?',meds.map(m=>'• '+esc(T(m.name))).join('<br>'));
     q('Qual o mecanismo de ação de '+name+'?',mec);
     BULA_SECS.forEach(s=>{const b=n.bf[s[0]];
       q(s[1]+' — '+name+'?',b.gen);
@@ -4416,6 +4465,7 @@ function flushNote(){
   const v=UI.nview;if(!v||v.type!=='note'||!v.edit)return;const n=noteById(v.id);if(!n)return;
   let ch=false;
   $$('.ned.editing[data-f]').forEach(ed=>{const f=ed.dataset.f,h=cleanHTML(ed.innerHTML);if(h!==(n[f]||'')){n[f]=h;ch=true;}});
+  if(n.type==='bula')$$('.ned.editing[data-bf]').forEach(ed=>{const k=ed.dataset.bf,m=ed.dataset.bm,h=cleanHTML(ed.innerHTML),b=n.bf[k];if(!b)return;const cur=m?(b.meds[m]||''):b.gen;if(h!==cur){if(m)b.meds[m]=h;else b.gen=h;ch=true;}});
   if(ch){n.updated=Date.now();save();}
 }
 function onNoteInput(){clearTimeout(noteTimer);noteTimer=setTimeout(flushNote,500);}
