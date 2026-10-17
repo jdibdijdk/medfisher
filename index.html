@@ -7,10 +7,10 @@
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2214%22%20fill=%22%2316181D%22/%3E%3Cg%20fill=%22none%22%20stroke-width=%226%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20d=%22M13%2016V48H28%22%20stroke=%22%23FFFFFF%22/%3E%3Cpath%20d=%22M52.5%2024.5A12.5%2012.5%200%201%200%2055%2033H44%22%20stroke=%22%237C98FF%22/%3E%3C/g%3E%3C/svg%3E">
 <meta name="theme-color" content="#16181D">
 <link rel="manifest" href="manifest.webmanifest">
-<title>Rotina de Estudos - Luís </title>
+<title>Rotina de Estudos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <script>try{if(localStorage.getItem("rotina_theme")==="dark")document.documentElement.dataset.theme="dark";}catch(e){}</script>
 <style>
 /* ==========================================================================
@@ -23,7 +23,7 @@
   --ok:#8FD0B0; --okd:#2F8F63; --r:14px;
   --sh:0 1px 2px rgba(22,24,29,.05),0 6px 18px rgba(22,24,29,.06);
   --sh2:0 4px 16px rgba(22,24,29,.14);
-  --font:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --font:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   --serif:'Crimson Pro','Iowan Old Style',Georgia,'Times New Roman',serif;
 }
 *{box-sizing:border-box}
@@ -336,7 +336,8 @@ body.nserif .olt,body.nserif .exres,body.nserif .exresv{font-size:19px}
 .soapbtn.on{background:var(--accs);color:var(--acc);border-color:var(--acc)}
 .qsec.soap h5{font-size:14px;font-weight:600}
 .qsec.soap h5 b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:7px;background:var(--qc);color:#fff;margin-right:7px;font-size:13px}
-.qsec.soap-s{--qc:#2547D0}.qsec.soap-o{--qc:#1E8F58}.qsec.soap-a{--qc:#D9822B}.qsec.soap-p{--qc:#7A4CC2}
+.qsec.soap-s{--qc:#2547D0}.qsec.soap-o{--qc:#1E8F58}.qsec.soap-a{--qc:#D9822B}.qsec.soap-p{--qc:#7A4CC2}.qsec.soap-e{--qc:#0E8C9C}
+.qsec .soapend{margin-top:10px;padding-top:0;border-top:0}.qsec .soapend .olist{font-size:15px}.qsec .soapend .olist div:not(.obj-h){font-size:15px}
 .exams{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line3)}
 .exh{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;font-size:13px;font-weight:600;color:var(--mut)}
 .exam{border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:var(--card);overflow:hidden}
@@ -1447,6 +1448,58 @@ html[data-theme="dark"] .tr-soil{fill:#2A2D36}html[data-theme="dark"] .tr-leaf{f
 .gmname{text-align:center;margin-top:4px}
 .forest{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;margin-top:10px;padding-top:8px;border-top:1px solid var(--line2)}
 @media (prefers-reduced-motion:reduce){.tr-grow{animation:none}.pmdial .fg{transition:none}}
+
+.ncimgs{display:grid;gap:4px;margin:8px 0 6px;border-radius:10px;overflow:hidden}
+.ncimgs.n1{grid-template-columns:1fr}.ncimgs.n2{grid-template-columns:1fr 1fr}.ncimgs.n3{grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr}.ncimgs.n3 img:first-child{grid-row:1/3}
+.ncimgs img{width:100%;height:100%;max-height:170px;object-fit:cover;display:block;background:var(--soft)}
+.ncimgs.n1 img{max-height:200px}
+.nrimg{width:44px;height:44px;border-radius:8px;object-fit:cover;flex:none}
+.attnmin{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--soft);color:var(--mut);border-radius:999px;padding:5px 12px;font-size:13px;margin-bottom:12px}
+
+/* SOAP: textos entre partes, plano, prescrição, anexos */
+.soapgap{margin:2px 0 10px}.soapgapsec{margin-top:4px}.plchips{margin:12px 0 8px}
+.exwhy{margin-bottom:10px}.exwhyt,.exres,.rxusein,.bft{width:100%;resize:none;overflow:hidden;font:inherit}
+.exwhyv{font-size:13px;color:var(--mut);margin:2px 0 8px;font-style:italic}.exwhyv b{font-style:normal}
+.xsrow{display:grid;grid-template-columns:1fr minmax(120px,200px) auto;gap:8px;align-items:start}
+.exref,.xprow input{min-width:0}.exrefv{font-size:12.5px;color:var(--mut);margin-top:4px}
+.xpbt{display:flex;gap:2px}.exhide.on{color:var(--acc)}
+.exrev{display:inline-flex;align-items:center;gap:6px;border:1px dashed var(--line);background:var(--soft);color:var(--mut);border-radius:999px;padding:4px 12px;font:inherit;font-size:12.5px;cursor:pointer;margin:2px 4px 2px 0}
+.exrev:hover{border-color:var(--acc);color:var(--acc)}
+.exattbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.exatts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.exatt{display:inline-flex;align-items:center;gap:6px;background:var(--soft);border-radius:999px;padding:3px 4px 3px 10px;font-size:12.5px}
+.eximg{margin:6px 0;display:block}.eximg img{max-width:100%;max-height:420px;border-radius:10px;border:1px solid var(--line);display:block}.eximg figcaption{margin-top:4px}
+.reqbox,.rxbox{margin-top:12px}
+.rxrow{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;background:var(--card)}
+.rxtop{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.rxdrug{font-size:16px}.rxdrug a{color:inherit;text-decoration:underline dotted}
+.rxdose{color:var(--mut)}.rxqty{margin-left:auto;font-size:20px;font-weight:700;background:var(--soft);border-radius:10px;padding:2px 12px}
+.rxuse{margin-top:6px;font-size:14px;white-space:pre-wrap}
+.rxgrid{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;margin-bottom:8px;align-items:center}
+.rxbig{font-size:18px;font-weight:700}.rxin{min-width:0}
+/* Bulário */
+.bmrow{display:flex;gap:6px;margin-bottom:6px}.bmrow input{flex:1;min-width:0}
+.bmeds,.bcls{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}.bmeds a,.bcls a{text-decoration:none}
+.bmf{margin-bottom:10px}.bmn{font-weight:600;font-size:13px}.bmv{margin-bottom:10px}.bmt{white-space:pre-wrap}
+@media(max-width:640px){.xsrow{grid-template-columns:1fr}.rxgrid{grid-template-columns:1fr 1fr}.rxgrid input:first-child{grid-column:1/-1}}
+
+/* Aplicativo instalado no celular: mais compacto (só aparece no app, não no navegador) */
+@media (max-width:760px){
+  body.appmode{font-size:14px}
+  body.appmode main{padding:8px 10px 84px}
+  body.appmode .top{padding:6px 10px}
+  body.appmode h1,body.appmode .vt{font-size:21px}
+  body.appmode h2{font-size:18px}
+  body.appmode .tcard,body.appmode .card,body.appmode .fwrap{padding:10px 12px}
+  body.appmode .tcard{grid-template-columns:44px 1fr;gap:8px}
+  body.appmode .btn{padding:6px 11px;font-size:13px}
+  body.appmode .tab{min-width:54px;padding:4px 4px;font-size:10px}
+  body.appmode .ncards{gap:8px}
+  body.appmode .ncard{padding:10px 12px}
+  body.appmode .ncard h3{font-size:14.5px}
+  body.appmode .sheet{padding:14px 14px calc(14px + env(safe-area-inset-bottom,0px))}
+  body.appmode .exam .exhead{padding:6px 8px}
+  body.appmode .rxqty{font-size:17px}
+  body.appmode #toast{bottom:80px}
+}
 </style>
 </head>
 <body>
@@ -1473,7 +1526,7 @@ html[data-theme="dark"] .tr-soil{fill:#2A2D36}html[data-theme="dark"] .tr-leaf{f
 <button class="sync-dot is-local" id="sync" data-a="sync-now" aria-label="Sincronizar agora" title="Sincronizar agora"><i></i></button>
 <input type="file" id="recFile" accept="image/*" hidden>
 <input type="file" id="cardImgFile" accept="image/*" hidden>
-<input type="file" id="imgFile" accept="image/*" hidden>
+<input type="file" id="imgFile" accept="image/*" hidden><input type="file" id="exFile" accept="image/*,application/pdf" hidden>
 <input type="file" id="fxFile" accept="image/*" hidden>
 <input type="file" id="pdfFile" accept="application/pdf,.pdf" hidden>
 <input type="file" id="fileImport" accept=".json,application/json" hidden>
@@ -1605,6 +1658,8 @@ Object.assign(ICONS,{
  pregnant:'<circle cx="10.5" cy="4" r="2"/><path d="M11.5 7.8c1.5 0 2.5 1 2.8 2.6 2.4.8 3.6 2.6 3.2 5-.3 1.6-1.6 2.5-3.3 2.6L13.5 21M9.5 8c-1.3 1.2-1.6 3.2-1.2 5.2l1 3.3L9 21"/>',
  lungs:'<path d="M12 3v8M12 11l-3 3M12 11l3 3"/><path d="M9.5 8.5C6.5 8.5 4 12.5 3.5 17c-.3 2.6 1 3.8 3 3.5 2-.3 3-1.6 3-3.6V8.5z"/><path d="M14.5 8.5c3 0 5.5 4 6 8.5.3 2.6-1 3.8-3 3.5-2-.3-3-1.6-3-3.6V8.5z"/>',
  thyroid:'<path d="M11.2 17c-4 .3-7.4-3.4-7.2-10.5 4-.2 7.2 2.4 7.2 6.4z"/><path d="M12.8 17c4 .3 7.4-3.4 7.2-10.5-4-.2-7.2 2.4-7.2 6.4z"/><path d="M11.2 14h1.6M12 3v2"/>',
+ paperclip:'<path d="M21 11.5l-8.6 8.6a5 5 0 01-7.1-7.1l8.6-8.6a3.4 3.4 0 014.8 4.8l-8.6 8.6a1.7 1.7 0 01-2.4-2.4l7.9-7.9"/>',
+ dot:'<circle cx="12" cy="12" r="3"/>',
  pill:'<path d="M10.5 20.5L20.5 10.5a4.95 4.95 0 10-7-7L3.5 13.5a4.95 4.95 0 107 7z"/><path d="M8.5 8.5l7 7"/>',
  clinic:'<path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M12 10v6M9 13h6"/>',
  petsaude:'<path d="M12 20.5S3.5 15.5 3.5 9.3A4.4 4.4 0 0112 7.2a4.4 4.4 0 018.5 2.1c0 6.2-8.5 11.2-8.5 11.2z"/><path d="M12 10v5M9.5 12.5h5"/>',
@@ -1714,7 +1769,20 @@ function normFin(f){
 function defaultState(){return normalize(null);}
 /* Caso clínico: campos do Modo SOAP e listas finais (palavras desconhecidas, observações, hipóteses, objetivos de estudo) */
 const CASO_LISTS=[['unk','Palavras desconhecidas','Palavra ou termo que ainda não conheço'],['obs','Observações sobre o caso','Uma observação sobre o caso'],['hyp','Hipóteses','Uma hipótese diagnóstica ou de conduta'],['est','Objetivos de Estudo','O que preciso estudar a partir deste caso']];
+const PLAN_LISTS=[['enc','Encaminho','Para quem ou para qual serviço encaminhar…'],['ori','Oriento','Uma orientação ao paciente…']];
+const BULA_SECS=[['dose','Dose Inicial e Máxima','Ex.: 5 mg/dia; máximo de 20 mg/dia'],['renal','Ajuste Renal, Hepático ou Outro','Ex.: reduzir 50% se TFG < 30'],['ind','Indicações Clínicas','Quando usar e quando preferir um ao outro'],['contra','Contraindicações e Observações','Quando não usar, cuidados, interações'],['adv','Efeitos Adversos','E qual causa mais que o outro'],['price','Preço','Faixa de preço ou custo mensal']];
+const normExam=x=>({id:x.id||uid(),name:String(x.name||''),kind:x.kind==='par'?'par':'res',result:String(x.result||''),ref:String(x.ref||''),why:String(x.why||''),hide:!!x.hide,
+  att:(Array.isArray(x.att)?x.att:[]).filter(a=>a&&typeof a.data==='string'&&/^data:(image\/|application\/pdf)/.test(a.data)).map(a=>({id:a.id||uid(),name:String(a.name||'Anexo'),type:/^data:application\/pdf/.test(a.data)?'pdf':'img',data:a.data})),
+  params:(Array.isArray(x.params)?x.params:[]).filter(q=>q&&typeof q==='object').map(q=>({id:q.id||uid(),name:String(q.name||''),value:String(q.value||''),ref:String(q.ref||''),hide:!!q.hide}))});
 function normNote(n){
+  if(n.type==='bula'){
+    n.kind=n.kind==='classe'?'classe':'med';n.cls=String(n.cls||'');
+    n.meds=(Array.isArray(n.meds)?n.meds:[]).filter(m=>m&&typeof m==='object').map(m=>({id:m.id||uid(),name:String(m.name||'')}));
+    ['mec','pearls'].forEach(k=>{if(typeof n[k]!=='string')n[k]='';});
+    const bf=(n.bf&&typeof n.bf==='object')?n.bf:{};n.bf={};
+    BULA_SECS.forEach(s=>{const b=bf[s[0]]||{};n.bf[s[0]]={gen:String(b.gen||''),meds:(b.meds&&typeof b.meds==='object')?b.meds:{}};});
+    return n;
+  }
   if(n.type==='fluxo'){n.fx=fxNormalize(n.fx);return n;}
   if(n.type==='questao'){
     n.qgroup=String(n.qgroup||'');n.prova=String(n.prova||'');n.nivel=/^(R1|R\+)$/.test(n.nivel)?n.nivel:'';n.ano=String(n.ano||'');
@@ -1725,8 +1793,12 @@ function normNote(n){
   n.soapOn=!!n.soapOn;
   ['s','o','a','p'].forEach(k=>{if(typeof n[k]!=='string')n[k]='';});
   CASO_LISTS.forEach(l=>{n[l[0]]=Array.isArray(n[l[0]])?n[l[0]].map(x=>String(x==null?'':x)):[];});
-  n.exams=(Array.isArray(n.exams)?n.exams:[]).filter(x=>x&&typeof x==='object').map(x=>({id:x.id||uid(),name:String(x.name||''),kind:x.kind==='par'?'par':'res',result:String(x.result||''),
-    params:(Array.isArray(x.params)?x.params:[]).filter(q=>q&&typeof q==='object').map(q=>({id:q.id||uid(),name:String(q.name||''),value:String(q.value||''),ref:String(q.ref||'')}))}));
+  n.exams=(Array.isArray(n.exams)?n.exams:[]).filter(x=>x&&typeof x==='object').map(normExam);
+  n.req=(Array.isArray(n.req)?n.req:[]).filter(x=>x&&typeof x==='object').map(normExam);
+  n.rx=(Array.isArray(n.rx)?n.rx:[]).filter(x=>x&&typeof x==='object').map(x=>({id:x.id||uid(),drug:String(x.drug||''),dose:String(x.dose||''),qty:String(x.qty||''),use:String(x.use||''),bid:String(x.bid||'')}));
+  PLAN_LISTS.forEach(l=>{n[l[0]]=Array.isArray(n[l[0]])?n[l[0]].map(x=>String(x==null?'':x)):[];});
+  ['g1','g2','g3','g4','evo'].forEach(k=>{if(typeof n[k]!=='string')n[k]='';});
+  n.gon=(n.gon&&typeof n.gon==='object')?n.gon:{};n.pl=(n.pl&&typeof n.pl==='object')?n.pl:{};
   return n;
 }
 /* Fluxograma: normalização do desenho (caixas e ligações) */
@@ -2793,7 +2865,7 @@ function detectExt(text){
 }
 const docExt=d=>FX[d.ext]?d.ext:(detectExt(d.link)||detectExt(d.title));
 const FXI={
-  pdf:'<text x="11.5" y="16.8" text-anchor="middle" font-size="6.4" font-weight="700" fill="currentColor" stroke="none" font-family="Montserrat,system-ui,sans-serif">PDF</text>',
+  pdf:'<text x="11.5" y="16.8" text-anchor="middle" font-size="6.4" font-weight="700" fill="currentColor" stroke="none" font-family="Poppins,system-ui,sans-serif">PDF</text>',
   doc:'<path d="M8 12.5h7M8 15.5h7M8 18.5h4.5"/>',
   xls:'<rect x="8" y="11.5" width="7.5" height="7" rx="1"/><path d="M8 15h7.5M11.75 11.5v7"/>',
   ppt:'<rect x="8" y="11.5" width="7.5" height="5.5" rx="1"/><path d="M11.75 17v2M9.75 19h4"/>',
@@ -3141,6 +3213,32 @@ function tabAnim(dir){
   m.classList.remove('tabanim');m.style.setProperty('--dx',(dir*22)+'px');void m.offsetWidth;m.classList.add('tabanim');
   clearTimeout(tabAnim.t);tabAnim.t=setTimeout(()=>m.classList.remove('tabanim'),400);
 }
+/* Aplicativo instalado (PWA) no celular: layout compacto e troca de aba deslizando */
+const isAppMode=()=>{try{return !!((window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone||/[?&]app=1/.test(location.search));}catch(e){return false;}};
+function applyAppMode(){document.body.classList.toggle('appmode',isAppMode());}
+applyAppMode();
+(function(){
+  let sx=0,sy=0,st=0,ok=false;
+  const blocked=t=>{
+    for(let el=t;el&&el!==document.body;el=el.parentElement){
+      if(/^(INPUT|TEXTAREA|SELECT|CANVAS|TABLE)$/.test(el.tagName)||el.isContentEditable)return true;
+      if(el.classList&&(el.classList.contains('gridscroll')||el.classList.contains('fxview')||el.classList.contains('ftree')||el.classList.contains('noswipe')))return true;
+      if(el.scrollWidth>el.clientWidth+4){const ox=getComputedStyle(el).overflowX;if(ox==='auto'||ox==='scroll')return true;}
+    }
+    return false;
+  };
+  document.addEventListener('touchstart',e=>{
+    ok=false;if(!document.body.classList.contains('appmode')||!isPhone()||e.touches.length!==1)return;
+    const t=e.target;if(!t.closest||!t.closest('#main')||blocked(t))return;
+    sx=e.touches[0].clientX;sy=e.touches[0].clientY;st=Date.now();ok=true;
+  },{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(!ok)return;ok=false;const c=e.changedTouches[0],dx=c.clientX-sx,dy=c.clientY-sy;
+    if(Date.now()-st>700||Math.abs(dx)<70||Math.abs(dx)<Math.abs(dy)*1.6)return;
+    const i=TABS.findIndex(t=>t[0]===UI.tab),j=i+(dx<0?1:-1);if(i<0||j<0||j>=TABS.length)return;
+    ACT.tab({dataset:{v:TABS[j][0]}});
+  },{passive:true});
+})();
 function renderTabs(){
   const bar=$('#tabs'),due=dueCardCount();if(!bar)return;
   if(bar.dataset.built!=='1'||$$('.tab',bar).length!==TABS.length){
@@ -3873,7 +3971,7 @@ function qMetaChips(q){
 }
 // Na lista de notas, os cards de estudo aparecem agrupados em baralhos (nunca soltos)
 function notaItems(){
-  let items=S.notes.map(n=>({k:n.type==='questao'?'questao':n.type==='caso'?'caso':n.type==='fluxo'?'fluxo':'note',o:n})).concat(S.pdfs.map(p=>({k:'pdf',o:p})),S.decks.map(d=>({k:'deck',o:d})));
+  let items=S.notes.map(n=>({k:n.type==='questao'?'questao':n.type==='caso'?'caso':n.type==='fluxo'?'fluxo':n.type==='bula'?'bula':'note',o:n})).concat(S.pdfs.map(p=>({k:'pdf',o:p})),S.decks.map(d=>({k:'deck',o:d})));
   const ttl=i=>i.k==='deck'?i.o.name:i.o.title;
   if(UI.ntype)items=items.filter(i=>i.k===UI.ntype);
   if(UI.nf==='__none')items=items.filter(i=>!i.o.folderId);
@@ -3887,16 +3985,28 @@ function notaItems(){
   }
   return items.sort((a,b)=>(b.o.updated||0)-(a.o.updated||0));
 }
-const isNoteK=k=>k==='note'||k==='questao'||k==='caso'||k==='fluxo';
+const isNoteK=k=>k==='note'||k==='questao'||k==='caso'||k==='fluxo'||k==='bula';
 function noteFieldsText(n){
-  let x=['wrong','right','just','s','o','a','p'].map(f=>{if(!n[f])return '';const t=document.createElement('div');t.innerHTML=cleanHTML(n[f]);return t.textContent||'';}).join(' ');
+  let x=['wrong','right','just','s','o','a','p','g1','g2','g3','g4','evo','mec','pearls'].map(f=>{if(!n[f])return '';const t=document.createElement('div');t.innerHTML=cleanHTML(n[f]);return t.textContent||'';}).join(' ');
   if(n.type==='fluxo'&&n.fx){n.fx.nodes.forEach(q=>{x+=' '+q.text;});n.fx.edges.forEach(q=>{x+=' '+q.label;});}
   if(n.type==='caso'){
     CASO_LISTS.forEach(l=>{x+=' '+(n[l[0]]||[]).join(' ');});
-    (n.exams||[]).forEach(e=>{x+=' '+e.name+' '+e.result+' '+(e.params||[]).map(q=>q.name+' '+q.value+' '+q.ref).join(' ');});
+    (n.exams||[]).concat(n.req||[]).forEach(e=>{x+=' '+e.name+' '+e.why+' '+e.result+' '+(e.params||[]).map(q=>q.name+' '+q.value+' '+q.ref).join(' ');});
+    (n.rx||[]).forEach(r=>{x+=' '+r.drug+' '+r.dose+' '+r.use;});PLAN_LISTS.forEach(l=>{x+=' '+(n[l[0]]||[]).join(' ');});
   }
+  if(n.type==='bula'){x+=' '+n.cls+' '+(n.meds||[]).map(m=>m.name).join(' ');BULA_SECS.forEach(s=>{const b=n.bf[s[0]];x+=' '+b.gen+' '+Object.keys(b.meds).map(k=>b.meds[k]).join(' ');});}
   return x;
 }
+function noteImgs(o,max){
+  const out=[],seen={};
+  ['html','s','o','a','p','g1','g2','g3','g4','evo','wrong','right','just','mec','pearls'].forEach(f=>{
+    if(out.length>=max||typeof o[f]!=='string'||o[f].indexOf('<img')<0)return;
+    const re=/<img[^>]+src=["']([^"']+)["']/gi;let m;
+    while((m=re.exec(o[f]))&&out.length<max){const s=m[1];if(/^(data:image\/|https:\/\/)/i.test(s)&&!seen[s]){seen[s]=1;out.push(s);}}
+  });
+  return out;
+}
+const ncImgsHTML=o=>{const l=noteImgs(o,3);return l.length?'<div class="ncimgs n'+l.length+'">'+l.map(s=>'<img src="'+esc(s)+'" alt="" loading="lazy">').join('')+'</div>':'';};
 function nCardHTML(it){
   const o=it.o,col=catColor(o.catId),fp=folderPath(o.folderId).join(' › ');
   const foot='<div class="tags" style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">'+(it.k==='questao'?qMetaChips(o):'')+(o.catId?tagHTML(o.catId):'')+(isNoteK(it.k)?cdChipHTML(o.cd):'')+(fp?'<span class="meta mi" style="font-size:12px;color:var(--mut)">'+ic('folder',12)+esc(fp)+'</span>':'')+'</div>';
@@ -3905,8 +4015,8 @@ function nCardHTML(it){
     return '<div class="ncard deck" data-a="n-open" data-k="deck" data-id="'+o.id+'" style="--c:'+col+'" role="button" tabindex="0"><h3>'+ic('cards',16)+esc(o.name||'Baralho')+'<span class="tag outline" style="margin-left:auto">Baralho</span></h3>'+
       '<p>'+st.total+(st.total===1?' item de estudo':' itens de estudo')+' · '+(st.due?'<b style="color:var(--acc)">'+st.due+' para revisar agora</b>':'em dia')+'</p>'+foot+'</div>';
   }
-  const body=it.k==='fluxo'?'<div class="fxcard">'+fxThumb(o)+'</div><p>'+o.fx.nodes.length+(o.fx.nodes.length===1?' caixa':' caixas')+' · '+o.fx.edges.length+(o.fx.edges.length===1?' ligação':' ligações')+'</p>':it.k==='pdf'?'<p>PDF · '+((o.annots||[]).length)+' anotação(ões)'+(o.src==='drive'?' · no Drive':' · neste aparelho')+'</p>':objCardHTML(o)+'<p>'+esc(noteText(o).slice(0,220)||'Nota vazia')+'</p>';
-  return '<div class="ncard" data-a="n-open" data-k="'+it.k+'" data-id="'+o.id+'" style="--c:'+col+'" role="button" tabindex="0"><h3>'+ic(it.k==='pdf'?'file':it.k==='questao'?'help':it.k==='caso'?'pulse':it.k==='fluxo'?'grid':'note',16)+esc(o.title||'Sem título')+(it.k==='questao'?'<span class="tag outline" style="margin-left:auto">Questão</span>':it.k==='caso'?'<span class="tag outline" style="margin-left:auto">Caso clínico</span>':it.k==='fluxo'?'<span class="tag outline" style="margin-left:auto">Fluxograma</span>':'')+'</h3>'+body+foot+'</div>';
+  const body=it.k==='fluxo'?'<div class="fxcard">'+fxThumb(o)+'</div><p>'+o.fx.nodes.length+(o.fx.nodes.length===1?' caixa':' caixas')+' · '+o.fx.edges.length+(o.fx.edges.length===1?' ligação':' ligações')+'</p>':it.k==='pdf'?'<p>PDF · '+((o.annots||[]).length)+' anotação(ões)'+(o.src==='drive'?' · no Drive':' · neste aparelho')+'</p>':objCardHTML(o)+(isNoteK(it.k)&&it.k!=='fluxo'?ncImgsHTML(o):'')+'<p>'+esc((it.k==='bula'?bulaSnippet(o):noteText(o)).slice(0,220)||'Nota vazia')+'</p>';
+  return '<div class="ncard" data-a="n-open" data-k="'+it.k+'" data-id="'+o.id+'" style="--c:'+col+'" role="button" tabindex="0"><h3>'+ic(it.k==='pdf'?'file':it.k==='questao'?'help':it.k==='caso'?'pulse':it.k==='bula'?'pill':it.k==='fluxo'?'grid':'note',16)+esc(o.title||'Sem título')+(it.k==='bula'?'<span class="tag outline" style="margin-left:auto">'+(o.kind==='classe'?'Classe':'Medicamento')+'</span>':'')+(it.k==='questao'?'<span class="tag outline" style="margin-left:auto">Questão</span>':it.k==='caso'?'<span class="tag outline" style="margin-left:auto">Caso clínico</span>':it.k==='fluxo'?'<span class="tag outline" style="margin-left:auto">Fluxograma</span>':'')+'</h3>'+body+foot+'</div>';
 }
 function nFolderTile(f){
   const ns=S.folders.filter(x=>x.parentId===f.id).length,tot=folderCount(f.id);
@@ -3925,12 +4035,12 @@ function nFolderBar(){
 }
 const nview=()=>S.prefs.nview==='lista'?'lista':'cartoes';
 function nRowHTML(it){
-  const o=it.o,col=catColor(o.catId),fp=folderPath(o.folderId).join(' › '),kind={deck:'Baralho',pdf:'PDF',questao:'Questão',caso:'Caso clínico',fluxo:'Fluxograma'}[it.k]||'Nota';
-  const ttl=(it.k==='deck'?o.name:o.title)||(it.k==='deck'?'Baralho':'Sem título'),ico=it.k==='deck'?'cards':it.k==='pdf'?'file':it.k==='questao'?'help':it.k==='caso'?'pulse':it.k==='fluxo'?'grid':'note';
+  const o=it.o,col=catColor(o.catId),fp=folderPath(o.folderId).join(' › '),kind={deck:'Baralho',pdf:'PDF',questao:'Questão',caso:'Caso clínico',bula:'Bulário',fluxo:'Fluxograma'}[it.k]||'Nota';
+  const ttl=(it.k==='deck'?o.name:o.title)||(it.k==='deck'?'Baralho':'Sem título'),ico=it.k==='deck'?'cards':it.k==='pdf'?'file':it.k==='questao'?'help':it.k==='caso'?'pulse':it.k==='bula'?'pill':it.k==='fluxo'?'grid':'note';
   const snip=it.k==='note'?noteText(o).replace(/\s+/g,' ').slice(0,110):'';
   const upd=o.updated?fmtDM(toISO(new Date(o.updated))):'';
   return '<div class="lrow nrow" style="--c:'+col+'" data-a="n-open" data-k="'+it.k+'" data-id="'+o.id+'" role="button" tabindex="0" title="'+esc(ttl)+'"><span class="lic">'+ic(ico,17)+'</span>'+
-    '<span class="lt">'+esc(ttl)+(snip?'<small>'+esc(snip)+'</small>':'')+'</span>'+
+    (isNoteK(it.k)&&it.k!=='fluxo'&&noteImgs(o,1).length?'<img class="nrimg" src="'+esc(noteImgs(o,1)[0])+'" alt="" loading="lazy">':'')+'<span class="lt">'+esc(ttl)+(snip?'<small>'+esc(snip)+'</small>':'')+'</span>'+
     '<span class="lmeta"><span class="tag outline">'+kind+'</span>'+(it.k==='questao'?qMetaChips(o):'')+(o.catId?tagHTML(o.catId):'')+(isNoteK(it.k)?cdChipHTML(o.cd):'')+(fp?'<span class="lpath">'+ic('folder',12)+esc(fp)+'</span>':'')+'</span>'+
     '<span class="lact"><span class="muted small">'+esc(upd)+'</span></span></div>';
 }
@@ -3951,14 +4061,14 @@ function renderNotas(){
     UI.nview=null;
   }
   if(UI.nsub==='estudar')return studyHTML();
-  const roots=S.cats.filter(c=>!c.parentId),tf=[['','Tudo'],['note','Notas'],['questao','Questões'],['caso','Casos clínicos'],['fluxo','Fluxogramas'],['deck','Baralhos'],['pdf','PDFs']];
+  const roots=S.cats.filter(c=>!c.parentId),tf=[['','Tudo'],['note','Notas'],['questao','Questões'],['caso','Casos clínicos'],['bula','Bulário'],['fluxo','Fluxogramas'],['deck','Baralhos'],['pdf','PDFs']];
   return nSubBar()+'<div class="nlay'+(UI.ftoff.notes?' nofo':'')+'">'+(UI.ftoff.notes?'':'<aside class="ftree" aria-label="Pastas">'+treeHead('notes')+
     '<div class="fo '+(UI.nf===''?'on':'')+'" data-a="n-folder" data-id="" role="button" tabindex="0"><span class="fnm">'+ic('layers',16)+'Todas</span><span class="count">'+(S.notes.length+S.pdfs.length+S.decks.length)+'</span></div>'+
     '<div class="fo '+(UI.nf==='__none'?'on':'')+'" data-a="n-folder" data-id="__none" role="button" tabindex="0"><span class="fnm">'+ic('note',16)+'Sem pasta</span><span class="count">'+folderCount('__none')+'</span></div>'+
     folderTreeHTML('',0)+
     '<button class="btn sm ghost" data-a="n-folder-new" style="margin-top:8px;width:100%;justify-content:center">'+ic('folderPlus',15)+' Nova pasta</button></aside>')+
     '<section><div class="toolbar"><div class="sbox" style="max-width:340px">'+ic('search',15)+'<input id="nq" type="search" placeholder="Buscar nas notas…" value="'+esc(UI.nq)+'"></div>'+
-    '<div class="frow"><button class="btn primary" data-a="n-new">'+ic('plus',15)+' Nova nota</button><button class="btn" data-a="n-new-q">'+ic('help',15)+' Nova questão</button><button class="btn" data-a="qt-open" title="Refazer as questões do banco: escolha entre a alternativa certa e a errada, sem saber qual é qual">'+ic('play',15)+' Treino de questões</button><button class="btn" data-a="n-new-caso">'+ic('pulse',15)+' Novo caso clínico</button><button class="btn" data-a="n-new-fluxo">'+ic('grid',15)+' Novo fluxograma</button><button class="btn" data-a="deck-new">'+ic('cards',15)+' Novo baralho</button><button class="btn" data-a="pdf-open-file">'+ic('file',15)+' PDF do computador</button><button class="btn" data-a="pdf-open-drive">'+ic('cloud',15)+' PDF do Drive</button></div></div>'+
+    '<div class="frow"><button class="btn primary" data-a="n-new">'+ic('plus',15)+' Nova nota</button><button class="btn" data-a="n-new-q">'+ic('help',15)+' Nova questão</button><button class="btn" data-a="qt-open" title="Refazer as questões do banco: escolha entre a alternativa certa e a errada, sem saber qual é qual">'+ic('play',15)+' Treino de questões</button><button class="btn" data-a="n-new-caso">'+ic('pulse',15)+' Novo caso clínico</button><button class="btn" data-a="n-new-bula">'+ic('pill',15)+' Novo Bulário</button><button class="btn" data-a="n-new-fluxo">'+ic('grid',15)+' Novo fluxograma</button><button class="btn" data-a="deck-new">'+ic('cards',15)+' Novo baralho</button><button class="btn" data-a="pdf-open-file">'+ic('file',15)+' PDF do computador</button><button class="btn" data-a="pdf-open-drive">'+ic('cloud',15)+' PDF do Drive</button></div></div>'+
     '<div class="frow" style="margin-bottom:10px"><span class="fl" style="min-width:auto">Mostrar</span>'+tf.map(x=>'<button class="chip '+(UI.ntype===x[0]?'on':'')+'" data-a="n-type" data-v="'+x[0]+'">'+x[1]+'</button>').join('')+'<span class="sp"></span>'+treeBtn('notes')+'<div class="seg vseg" aria-label="Modo de exibição">'+[['cartoes','Cartões'],['lista','Lista']].map(v=>'<button class="'+(nview()===v[0]?'on':'')+'" data-a="nview" data-v="'+v[0]+'" title="'+v[1]+'">'+v[1]+'</button>').join('')+'</div></div>'+
     '<div class="frow" style="margin-bottom:14px"><span class="fl" style="min-width:auto">Categoria</span><button class="chip '+(UI.ncat===''?'on':'')+'" data-a="n-cat" data-id="">Todas</button>'+roots.map(c=>'<button class="chip '+(UI.ncat===c.id?'on':'')+'" data-a="n-cat" data-id="'+c.id+'"><i class="dot" style="background:'+esc(c.color||'#ccc')+'"></i>'+esc(c.name)+'</button>').join('')+'</div>'+
     qGroupBarHTML()+tagBarHTML()+
@@ -3982,7 +4092,7 @@ function tagBarHTML(){
 function notasAfterRender(){
   const v=UI.nview;if(!v)return;
   if(v.type==='pdf'){const p=pdfById(v.id);if(p)pdfMount(p);}
-  else if(v.type==='note'){$$('.olt').forEach(autosize);updTblOps();mountCatPicks($('#main'));if(v.focusTitle){const t=$('#ntitle');if(t)t.focus();v.focusTitle=false;}}
+  else if(v.type==='note'){$$('.olt,.exwhyt,.exres,.rxusein,.bft').forEach(autosize);updTblOps();mountCatPicks($('#main'));if(v.focusTitle){const t=$('#ntitle');if(t)t.focus();v.focusTitle=false;}}
 }
 
 const NOTE_COLORS=[['#16181D','Padrão'],['#C62F2F','Vermelho'],['#D9822B','Laranja'],['#2F8F63','Verde'],['#2547D0','Azul'],['#7A4CC2','Roxo'],['#6B7280','Cinza']];
@@ -4007,19 +4117,19 @@ function qEditMetaHTML(n){
     '<label class="f">Grupo de questões<input id="qgroup" list="qgroups" value="'+esc(n.qgroup)+'" autocomplete="off"><datalist id="qgroups">'+qGroups().map(x=>'<option value="'+esc(x)+'">').join('')+'</datalist></label></div>';
 }
 function noteViewHTML(n){
-  const edit=UI.nview.edit,isQ=n.type==='questao',isC=n.type==='caso',isF=n.type==='fluxo';
+  const edit=UI.nview.edit,isQ=n.type==='questao',isC=n.type==='caso',isF=n.type==='fluxo',isB=n.type==='bula';
   let h='<div class="nhead"><button class="btn sm ghost" data-a="n-back">'+ic('chevL',14)+' Notas</button><span class="sp"></span>'+(isC?'<button class="btn sm soapbtn '+(n.soapOn?'on':'')+'" data-a="soap-toggle" aria-pressed="'+(n.soapOn?'true':'false')+'" title="Mostra os campos S, O, A e P do caso">'+ic('layers',14)+' Modo SOAP</button>':'')+
-    '<button class="btn sm ghost serifbtn '+(S.prefs.noteSerif?'on':'')+'" data-a="n-serif" aria-pressed="'+(S.prefs.noteSerif?'true':'false')+'" title="Alternar a fonte do texto das notas entre serifada (Crimson Pro) e Montserrat">'+ic('type',14)+' Serifada</button>'+
+    '<button class="btn sm ghost serifbtn '+(S.prefs.noteSerif?'on':'')+'" data-a="n-serif" aria-pressed="'+(S.prefs.noteSerif?'true':'false')+'" title="Alternar a fonte do texto das notas entre serifada (Crimson Pro) e Poppins">'+ic('type',14)+' Serifada</button>'+
     '<button class="icon-btn" data-a="n-pdf" title="Exportar esta nota em PDF" aria-label="Exportar em PDF">'+ic('download',18)+'</button>'+
     (edit?'<button class="btn sm primary" data-a="n-edit">'+ic('check',14)+' Concluir edição</button>':'<button class="icon-btn" data-a="n-edit" title="Editar" aria-label="Editar">'+ic('edit',19)+'</button>')+
     '<button class="icon-btn" data-a="n-del" title="Excluir" aria-label="Excluir">'+ic('trash',18)+'</button></div>';
   if(edit){
-    h+='<input id="ntitle" class="ntitle" value="'+esc(n.title)+'" placeholder="'+(isQ?'Título da questão (opcional)':isC?'Título do caso':isF?'Título do fluxograma':'Título da nota')+'" autocomplete="off">'+
+    h+='<input id="ntitle" class="ntitle" value="'+esc(n.title)+'" placeholder="'+(isQ?'Título da questão (opcional)':isC?'Título do caso':isF?'Título do fluxograma':isB?(n.kind==='classe'?'Nome da classe':'Nome do medicamento'):'Título da nota')+'" autocomplete="off">'+
       '<div class="nmeta"><label class="f">Pasta<select id="nfolder">'+folderOptions(n.folderId)+'</select></label><div class="f"><span>Categoria</span>'+catPickHTML('ncat',n.catId)+'</div>'+
       '<div class="f"><span>Contagem regressiva <small>data e nome</small></span><div class="frow" style="flex-wrap:nowrap"><input type="date" id="ncd" value="'+esc((n.cd&&n.cd.date)||'')+'" style="flex:1"><input id="ncdl" value="'+esc((n.cd&&n.cd.label)||'')+'" style="flex:1" autocomplete="off"><button type="button" class="icon-btn sm" data-a="n-cd-clear" title="Remover contagem" aria-label="Remover contagem">'+ic('x',14)+'</button></div></div></div>'+
-      (isQ?qEditMetaHTML(n):'')+(isF?'':noteToolbarHTML());
+      (isQ?qEditMetaHTML(n):'')+(isF||isB?'':noteToolbarHTML());
   }else{
-    h+='<h2 class="vt" style="margin-top:4px">'+esc(n.title||(isQ?'Questão':isC?'Caso clínico':isF?'Fluxograma':'Sem título'))+'</h2><div class="nmetarow" style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;align-items:center">'+(isQ?'<span class="tag outline">Questão</span>':isC?'<span class="tag outline">Caso clínico</span>':isF?'<span class="tag outline">Fluxograma</span>':'')+(isQ?qMetaChips(n):'')+(n.catId?tagHTML(n.catId):'')+cdChipHTML(n.cd)+noteTags(n).map(tagChip).join('')+(n.folderId?'<span class="meta mi" style="font-size:13px;color:var(--mut)">'+ic('folder',13)+esc(folderPath(n.folderId).join(' › '))+'</span>':'')+'<span class="muted small">Atualizada '+(n.updated?fmtDM(toISO(new Date(n.updated))):'')+'</span></div>';
+    h+='<h2 class="vt" style="margin-top:4px">'+esc(n.title||(isQ?'Questão':isC?'Caso clínico':isF?'Fluxograma':isB?'Bulário':'Sem título'))+'</h2><div class="nmetarow" style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;align-items:center">'+(isQ?'<span class="tag outline">Questão</span>':isC?'<span class="tag outline">Caso clínico</span>':isF?'<span class="tag outline">Fluxograma</span>':isB?'<span class="tag outline">'+(n.kind==='classe'?'Classe':'Medicamento')+'</span>':'')+(isQ?qMetaChips(n):'')+(n.catId?tagHTML(n.catId):'')+cdChipHTML(n.cd)+noteTags(n).map(tagChip).join('')+(n.folderId?'<span class="meta mi" style="font-size:13px;color:var(--mut)">'+ic('folder',13)+esc(folderPath(n.folderId).join(' › '))+'</span>':'')+'<span class="muted small">Atualizada '+(n.updated?fmtDM(toISO(new Date(n.updated))):'')+'</span></div>';
   }
   const ed=(f,id,ph)=>{
     const dec=edit?null:noteDecorate(n[f]||'',UI.prOpt);
@@ -4027,6 +4137,7 @@ function noteViewHTML(n){
   };
   const has=f=>!!(n[f]&&noteText({html:n[f]}));
   if(isF)return h+fluxoHTML(n,edit)+(edit?'':noteLinksHTML(n));
+  if(isB)return h+bulaBodyHTML(n,edit,ed)+noteDecksHTML(n)+(edit?'':noteLinksHTML(n));
   if(isC)return h+(edit||UI.prOpt&&UI.prOpt.obj===false?'':objSumHTML(n))+casoBodyHTML(n,edit,ed)+noteDecksHTML(n)+(edit?'':noteLinksHTML(n));
   if(!isQ)return h+(edit||UI.prOpt&&UI.prOpt.obj===false?'':objSumHTML(n))+ed('html','ned','Escreva aqui. Selecione um trecho e use Ctrl+K para ligá-lo a outra nota ou a um documento; Citar traz eventos, tarefas e links.')+noteDecksHTML(n)+(edit?'':noteLinksHTML(n));
   const sec=(cls,title,f,id,ph)=>'<section class="qsec '+cls+'"><h5>'+title+'</h5>'+ed(f,id,ph)+'</section>';
@@ -4034,49 +4145,184 @@ function noteViewHTML(n){
   const ans=(has('wrong')?sec('q-wrong','Questão errada','wrong','','')+'':'')+(has('right')?sec('q-right','Questão certa','right','','')+'':'')+(has('just')?sec('q-just','Justificativa','just','','')+'':'');
   return h+sec('q-main','Questão','html','ned','')+(ans?'<div class="qreveal"><button class="btn primary" data-a="q-reveal">'+ic('eye',15)+' Mostrar resposta</button></div><div class="qans" id="qans" hidden>'+ans+'</div>':'')+noteDecksHTML(n)+noteLinksHTML(n);
 }
+/* ----- Bulário: classes e medicamentos ----- */
+function bulaSnippet(o){
+  const t=[noteText({html:o.mec||''})];
+  if(o.kind==='classe')t.push((o.meds||[]).map(m=>m.name).filter(Boolean).join(', '));
+  else if(o.cls)t.push('Classe: '+o.cls);
+  BULA_SECS.forEach(s=>{const b=o.bf&&o.bf[s[0]];if(b&&b.gen)t.push(b.gen);});
+  return t.filter(Boolean).join(' · ');
+}
+function bulaClasses(){return S.notes.filter(x=>x.type==='bula'&&x.kind==='classe'&&x.title);}
+function bulaBodyHTML(n,edit,ed){
+  const has=f=>!!(n[f]&&noteText({html:n[f]}));
+  const isC=n.kind==='classe',meds=(n.meds||[]).filter(m=>m.name.trim());
+  let h='';
+  if(edit){
+    h+='<div class="frow" style="margin:6px 0 12px">'+[['med','Medicamento'],['classe','Classe']].map(k=>'<button type="button" class="chip '+(n.kind===k[0]?'on':'')+'" data-a="bula-kind" data-v="'+k[0]+'">'+k[1]+'</button>').join('')+'</div>';
+    if(!isC)h+='<label class="f">Classe<input id="bcls" list="bclsdl" value="'+esc(n.cls)+'" placeholder="Ex.: Inibidores da ECA" autocomplete="off"><datalist id="bclsdl">'+bulaClasses().map(c=>'<option value="'+esc(c.title)+'">').join('')+'</datalist></label>';
+    else h+='<div class="obj olist"><div class="obj-h">Medicações da classe</div>'+(n.meds.length?n.meds.map(m=>'<div class="bmrow"><input data-bmn="'+m.id+'" value="'+esc(m.name)+'" placeholder="Nome do medicamento" autocomplete="off" aria-label="Medicamento"><button type="button" class="icon-btn sm" data-a="bula-mdel" data-id="'+m.id+'" aria-label="Remover medicamento">'+ic('x',14)+'</button></div>').join(''):'<div class="muted small">Adicione os medicamentos desta classe: cada um ganha um campo próprio em todos os tópicos abaixo.</div>')+'<button type="button" class="btn sm" data-a="bula-madd">'+ic('plus',14)+' Medicamento</button></div>';
+  }else{
+    if(!isC&&n.cls){const c=bulaClasses().find(x=>x.title.toLowerCase()===n.cls.toLowerCase());h+='<div class="bcls">Classe: '+(c?'<a href="#" data-a="n-open" data-k="bula" data-id="'+c.id+'">'+esc(n.cls)+'</a>':esc(n.cls))+'</div>';}
+    if(isC&&meds.length)h+='<div class="bmeds">'+meds.map(m=>{const mn=S.notes.find(x=>x.type==='bula'&&x.kind==='med'&&x.title.toLowerCase()===m.name.trim().toLowerCase());return mn?'<a class="tag outline" href="#" data-a="n-open" data-k="bula" data-id="'+mn.id+'">'+esc(m.name)+'</a>':'<span class="tag outline">'+esc(m.name)+'</span>';}).join('')+'</div>';
+  }
+  if(edit||has('mec'))h+='<section class="qsec bula-sec"><h5>Mecanismo de Ação</h5>'+ed('mec','ned_mec','Como o fármaco ou a classe age…')+'</section>';
+  BULA_SECS.forEach(s=>{
+    const k=s[0],b=n.bf[k],fields=[];
+    if(edit||b.gen)fields.push([isC?'Geral da classe':'',b.gen,'',s[2]]);
+    if(isC)meds.forEach(m=>{const v=b.meds[m.id]||'';if(edit||v)fields.push([m.name,v,m.id,s[2]]);});
+    if(!fields.length)return;
+    h+='<section class="qsec bula-sec"><h5>'+s[1]+'</h5>'+fields.map(f=>edit?
+      '<label class="f bmf">'+(f[0]?'<span class="bmn">'+esc(f[0])+'</span>':'')+'<textarea class="bft" rows="1" data-bf="'+k+'" data-bm="'+f[2]+'" placeholder="'+esc(f[3])+'">'+esc(f[1])+'</textarea></label>':
+      '<div class="bmv">'+(f[0]?'<b class="bmn">'+esc(f[0])+'</b>':'')+'<div class="bmt">'+esc(f[1])+'</div></div>').join('')+'</section>';
+  });
+  if(edit||has('pearls'))h+='<section class="qsec bula-sec"><h5>Pérolas Clínicas</h5>'+ed('pearls','ned_pearls','O que vale lembrar na prática…')+'</section>';
+  h+='<div class="frow" style="margin:14px 0"><button type="button" class="btn" data-a="bula-cards">'+ic('cards',15)+' Transformar em flashcards</button></div>';
+  return h;
+}
+function bulaCardsFor(n){
+  const T=s=>String(s||'').trim(),out=[],name=T(n.title)||'Sem nome',meds=(n.meds||[]).filter(m=>T(m.name));
+  const mec=T(noteText({html:n.mec||''})),per=T(noteText({html:n.pearls||''}));
+  const q=(f,b)=>{if(T(b))out.push({front:f,back:T(b)});};
+  if(n.kind==='classe'){
+    if(meds.length)q('Quais medicamentos fazem parte da classe '+name+'?',meds.map(m=>'• '+T(m.name)).join('\n'));
+    q('Qual o mecanismo de ação de '+name+'?',mec);
+    BULA_SECS.forEach(s=>{const b=n.bf[s[0]];
+      q(s[1]+' — '+name+'?',b.gen);
+      meds.forEach(m=>q(s[1]+' — '+T(m.name)+' ('+name+')?',b.meds[m.id]));});
+  }else{
+    if(n.cls)q('A qual classe pertence '+name+'?',n.cls);
+    q('Qual o mecanismo de ação de '+name+'?',mec);
+    BULA_SECS.forEach(s=>q(s[1]+' — '+name+'?',n.bf[s[0]].gen));
+  }
+  q('Pérolas clínicas — '+name,per);
+  return out;
+}
+
 /* ----- Casos clínicos: Modo SOAP ----- */
 const SOAP_SECS=[['s','Subjetivo','S','Queixa, história da doença atual, o que o paciente relata…'],['o','Objetivo','O','Exame físico, sinais vitais e achados. Os exames entram logo abaixo.'],['a','Avaliação','A','Raciocínio clínico, diagnósticos e diagnósticos diferenciais…'],['p','Plano','P','Conduta, exames a pedir, tratamento, orientações e retorno…']];
 const exLabel=x=>x.name||'Exame sem nome';
-function examHTML(n,x,edit){
-  const open=!!UI.exOpen[x.id],np=(x.params||[]).filter(q=>q.name||q.value).length;
-  const sum=x.kind==='par'?(np+(np===1?' parâmetro':' parâmetros')):String(x.result||'').replace(/\s+/g,' ').trim().slice(0,70);
+const exList=(n,lk)=>lk==='req'?n.req:n.exams;
+function exFind(n,id){return (n.exams||[]).concat(n.req||[]).find(e=>e.id===id);}
+const exRev=k=>!!(UI.exRev&&UI.exRev[k]);
+const revBtn=(k,label,cls)=>'<button type="button" class="exrev '+(cls||'')+'" data-a="ex-rev" data-k="'+k+'">'+ic('eye',13)+' '+esc(label)+'</button>';
+function attsHTML(n,x,edit){
+  const as=x.att||[];if(!as.length)return '';
+  return '<div class="exatts">'+as.map(a=>{
+    const k='a'+a.id,sh=exRev(k);
+    if(edit)return '<span class="exatt">'+ic(a.type==='pdf'?'file':'image',14)+'<span>'+esc(a.name)+'</span><button type="button" class="icon-btn sm" data-a="ex-adel" data-id="'+x.id+'" data-aid="'+a.id+'" aria-label="Remover anexo">'+ic('x',13)+'</button></span>';
+    if(a.type==='pdf')return '<button type="button" class="exrev" data-a="ex-pdf" data-id="'+x.id+'" data-aid="'+a.id+'">'+ic('file',13)+' Abrir PDF · '+esc(a.name)+'</button>';
+    return sh?'<figure class="eximg"><img src="'+a.data+'" alt="'+esc(a.name)+'"><figcaption>'+revBtn(k,'Ocultar imagem')+'</figcaption></figure>':revBtn(k,'Mostrar imagem · '+a.name);
+  }).join('')+'</div>';
+}
+/* mode: 'full' (nome, justificativa, resultado) · 'req' (Solicito: nome e justificativa) · 'res' (Evolução: só resultado do exame solicitado) */
+function examHTML(n,x,edit,lk,mode){
+  mode=mode||'full';
+  const ok=mode+x.id,open=mode==='req'?false:!!UI.exOpen[ok]||(mode==='res'&&!!UI.exOpen[x.id]),np=(x.params||[]).filter(q=>q.name||q.value).length;
+  const sum=x.kind==='par'?(np+(np===1?' parâmetro':' parâmetros')):(x.hide&&!edit?'Oculto':String(x.result||'').replace(/\s+/g,' ').trim().slice(0,70));
+  const dk='data-id="'+x.id+'" data-lk="'+(lk||'exams')+'" data-m="'+mode+'"';
   let head,body='';
+  const resEdit=()=>{
+    const hb=(on,attrs)=>'<button type="button" class="icon-btn sm exhide '+(on?'on':'')+'" data-a="ex-hide" '+attrs+' title="Esconder até eu clicar para mostrar" aria-pressed="'+(on?'true':'false')+'" aria-label="Esconder até clicar">'+ic(on?'eyeOff':'eye',14)+'</button>';
+    return (x.kind==='par'?
+      '<div class="exparams">'+(x.params.length?'<div class="xprow xphead"><span>Parâmetro</span><span>Valor</span><span>Referência</span><span></span></div>':'')+x.params.map(q=>'<div class="xprow"><input data-ex="'+x.id+'" data-pid="'+q.id+'" data-exf="pname" value="'+esc(q.name)+'" placeholder="Parâmetro" autocomplete="off" aria-label="Parâmetro"><input data-ex="'+x.id+'" data-pid="'+q.id+'" data-exf="pval" value="'+esc(q.value)+'" placeholder="Valor" autocomplete="off" aria-label="Valor"><input data-ex="'+x.id+'" data-pid="'+q.id+'" data-exf="pref" value="'+esc(q.ref)+'" placeholder="Referência" autocomplete="off" aria-label="Valor de referência"><span class="xpbt">'+hb(q.hide,'data-id="'+x.id+'" data-pid="'+q.id+'"')+'<button type="button" class="icon-btn sm" data-a="ex-pdel" data-id="'+x.id+'" data-pid="'+q.id+'" title="Remover parâmetro" aria-label="Remover parâmetro">'+ic('x',14)+'</button></span></div>').join('')+'</div><button type="button" class="btn sm" data-a="ex-padd" data-id="'+x.id+'">'+ic('plus',14)+' Parâmetro</button>'
+      :'<div class="xsrow"><textarea class="exres" data-ex="'+x.id+'" data-exf="result" placeholder="Resultado do exame…" aria-label="Resultado do exame">'+esc(x.result)+'</textarea><input class="exref" data-ex="'+x.id+'" data-exf="ref" value="'+esc(x.ref)+'" placeholder="Valor de referência" autocomplete="off" aria-label="Valor de referência">'+hb(x.hide,'data-id="'+x.id+'"')+'</div>')+
+      '<div class="exattbar"><button type="button" class="btn sm" data-a="ex-attach" data-id="'+x.id+'">'+ic('paperclip',14)+' Anexar imagem ou PDF</button><span class="muted small">Ficam ocultos até você clicar para mostrar.</span></div>'+attsHTML(n,x,true);
+  };
+  const resView=()=>{
+    let r='';
+    if(x.kind==='par'){
+      r+=(x.params||[]).length?'<table class="ptab"><thead><tr><th>Parâmetro</th><th>Valor</th><th>Referência</th></tr></thead><tbody>'+x.params.map(q=>{const k='p'+q.id;return '<tr><td>'+esc(q.name)+'</td><td>'+(q.hide&&!exRev(k)?revBtn(k,'Mostrar valor'):'<b>'+esc(q.value)+'</b>')+'</td><td class="muted">'+esc(q.ref)+'</td></tr>';}).join('')+'</tbody></table>':'<span class="muted small">Sem parâmetros.</span>';
+    }else{
+      const k='r'+x.id,t=String(x.result||'').trim();
+      if(t||x.ref)r+=(x.hide&&!exRev(k)?revBtn(k,'Mostrar resultado'):(t?'<div class="exresv">'+esc(x.result)+'</div>':'')+(x.ref?'<div class="exrefv">Referência: '+esc(x.ref)+'</div>':''));
+      else r+='<span class="muted small">Sem resultado.</span>';
+    }
+    return r+attsHTML(n,x,false);
+  };
+  const why=edit?'<label class="f exwhy">Por que pedir este exame?<textarea class="exwhyt" rows="1" data-ex="'+x.id+'" data-exf="why" placeholder="Justificativa: o raciocínio por trás do pedido (para treinar)…">'+esc(x.why)+'</textarea></label>':(x.why?'<div class="exwhyv"><b>Por quê:</b> '+esc(x.why)+'</div>':'');
   if(edit){
-    head='<div class="exhead"><button type="button" class="icon-btn sm exchev" data-a="ex-toggle" data-id="'+x.id+'" aria-label="Expandir ou recolher o exame" aria-expanded="'+open+'">'+ic('chevR',16)+'</button><input class="exname" data-ex="'+x.id+'" data-exf="name" value="'+esc(x.name)+'" placeholder="Nome do exame" autocomplete="off" aria-label="Nome do exame"><span class="exsum">'+esc(sum)+'</span><button type="button" class="icon-btn sm" data-a="ex-del" data-id="'+x.id+'" title="Excluir exame" aria-label="Excluir exame">'+ic('trash',14)+'</button></div>';
-    if(open)body='<div class="exbody"><div class="frow" style="margin-bottom:10px">'+[['res','Resultado único'],['par','Vários parâmetros']].map(k=>'<button type="button" class="chip '+(x.kind===k[0]?'on':'')+'" data-a="ex-kind" data-id="'+x.id+'" data-v="'+k[0]+'">'+k[1]+'</button>').join('')+'</div>'+
-      (x.kind==='par'?
-        '<div class="exparams">'+(x.params.length?'<div class="xprow xphead"><span>Parâmetro</span><span>Valor</span><span>Referência</span><span></span></div>':'')+x.params.map(q=>'<div class="xprow"><input data-ex="'+x.id+'" data-pid="'+q.id+'" data-exf="pname" value="'+esc(q.name)+'" placeholder="Parâmetro" autocomplete="off" aria-label="Parâmetro"><input data-ex="'+x.id+'" data-pid="'+q.id+'" data-exf="pval" value="'+esc(q.value)+'" placeholder="Valor" autocomplete="off" aria-label="Valor"><input data-ex="'+x.id+'" data-pid="'+q.id+'" data-exf="pref" value="'+esc(q.ref)+'" placeholder="Referência" autocomplete="off" aria-label="Valor de referência"><button type="button" class="icon-btn sm" data-a="ex-pdel" data-id="'+x.id+'" data-pid="'+q.id+'" title="Remover parâmetro" aria-label="Remover parâmetro">'+ic('x',14)+'</button></div>').join('')+'</div><button type="button" class="btn sm" data-a="ex-padd" data-id="'+x.id+'">'+ic('plus',14)+' Parâmetro</button>'
-       :'<textarea class="exres" data-ex="'+x.id+'" data-exf="result" placeholder="Resultado do exame…" aria-label="Resultado do exame">'+esc(x.result)+'</textarea>')+'</div>';
+    const nameEl=mode==='res'?'<b class="exn">'+esc(exLabel(x))+'</b>':'<input class="exname" data-ex="'+x.id+'" data-exf="name" value="'+esc(x.name)+'" placeholder="Nome do exame" autocomplete="off" aria-label="Nome do exame">';
+    head='<div class="exhead"><button type="button" class="icon-btn sm exchev" data-a="ex-toggle" data-id="'+x.id+'" data-m="'+mode+'" aria-label="Expandir ou recolher o exame" aria-expanded="'+open+'">'+ic('chevR',16)+'</button>'+nameEl+(mode==='req'?'':'<span class="exsum">'+esc(sum)+'</span>')+(mode==='res'?'':'<button type="button" class="icon-btn sm" data-a="ex-del" '+dk+' title="Excluir exame" aria-label="Excluir exame">'+ic('trash',14)+'</button>')+'</div>';
+    if(mode==='req')body='<div class="exbody">'+why+'</div>';
+    else if(open)body='<div class="exbody">'+(mode==='full'?'<div class="frow" style="margin-bottom:10px">'+[['res','Resultado único'],['par','Vários parâmetros']].map(k=>'<button type="button" class="chip '+(x.kind===k[0]?'on':'')+'" data-a="ex-kind" '+dk+' data-v="'+k[0]+'">'+k[1]+'</button>').join('')+'</div>'+why:'')+resEdit()+'</div>';
   }else{
-    head='<div class="exhead" data-a="ex-toggle" data-id="'+x.id+'" role="button" tabindex="0" aria-expanded="'+open+'"><span class="exchev">'+ic('chevR',16)+'</span><b class="exn">'+esc(exLabel(x))+'</b><span class="exsum">'+esc(sum)+'</span></div>';
-    if(open)body='<div class="exbody">'+(x.kind==='par'?
-      ((x.params||[]).length?'<table class="ptab"><thead><tr><th>Parâmetro</th><th>Valor</th><th>Referência</th></tr></thead><tbody>'+x.params.map(q=>'<tr><td>'+esc(q.name)+'</td><td><b>'+esc(q.value)+'</b></td><td class="muted">'+esc(q.ref)+'</td></tr>').join('')+'</tbody></table>':'<span class="muted small">Sem parâmetros.</span>')
-      :(String(x.result||'').trim()?'<div class="exresv">'+esc(x.result)+'</div>':'<span class="muted small">Sem resultado.</span>'))+'</div>';
+    head='<div class="exhead" '+(mode==='req'?'':'data-a="ex-toggle" data-id="'+x.id+'" data-m="'+mode+'" role="button" tabindex="0" aria-expanded="'+open+'"')+'><span class="exchev">'+ic(mode==='req'?'dot':'chevR',16)+'</span><b class="exn">'+esc(exLabel(x))+'</b>'+(mode==='req'?'':'<span class="exsum">'+esc(sum)+'</span>')+'</div>';
+    if(mode==='req')body=why?'<div class="exbody">'+why+'</div>':'';
+    else if(open)body='<div class="exbody">'+(mode==='full'?why:'')+resView()+'</div>';
   }
-  return '<div class="exam '+(open?'open':'')+'" data-exam="'+x.id+'">'+head+body+'</div>';
+  return '<div class="exam '+(open||mode==='req'?'open':'')+'" data-exam="'+x.id+'">'+head+body+'</div>';
 }
 function examsHTML(n,edit){
   const ex=n.exams||[];
   if(!edit&&!ex.length)return '';
-  return '<div class="exams"><div class="exh"><span>Exames</span>'+(edit?'<button type="button" class="btn sm" data-a="ex-add">'+ic('plus',14)+' Exame</button>':'')+'</div>'+
-    (ex.length?ex.map(x=>examHTML(n,x,edit)).join(''):'<div class="muted small" style="margin-bottom:6px">Nenhum exame ainda. Cada exame pode ter um resultado ou vários parâmetros, e abre e fecha com um toque.</div>')+'</div>';
+  return '<div class="exams"><div class="exh"><span>Exames</span>'+(edit?'<button type="button" class="btn sm" data-a="ex-add" data-lk="exams">'+ic('plus',14)+' Exame</button>':'')+'</div>'+
+    (ex.length?ex.map(x=>examHTML(n,x,edit,'exams','full')).join(''):'<div class="muted small" style="margin-bottom:6px">Nenhum exame ainda. Cada exame pode ter um resultado ou vários parâmetros, e abre e fecha com um toque.</div>')+'</div>';
+}
+function reqHTML(n,edit){
+  const ex=n.req||[];
+  return '<div class="exams reqbox"><div class="exh"><span>Solicito</span>'+(edit?'<button type="button" class="btn sm" data-a="ex-add" data-lk="req">'+ic('plus',14)+' Exame</button>':'')+'</div>'+
+    (ex.length?ex.map(x=>examHTML(n,x,edit,'req','req')).join(''):'<div class="muted small" style="margin-bottom:6px">Exames que você solicita. Na Evolução, cada um ganha um espaço para o resultado.</div>')+'</div>';
+}
+function rxHTML(n,edit){
+  const rx=n.rx||[];
+  if(!edit){
+    return '<div class="rxbox"><div class="exh"><span>Prescrevo</span></div>'+rx.filter(r=>r.drug||r.dose||r.qty||r.use).map(r=>'<div class="rxrow"><div class="rxtop"><b class="rxdrug">'+(r.bid&&noteById(r.bid)?'<a href="#" data-a="n-open" data-k="bula" data-id="'+r.bid+'" title="Abrir no Bulário">'+esc(r.drug)+'</a>':esc(r.drug))+'</b>'+(r.dose?'<span class="rxdose">'+esc(r.dose)+'</span>':'')+(r.qty?'<span class="rxqty">'+esc(r.qty)+'</span>':'')+'</div>'+(r.use?'<div class="rxuse">'+esc(r.use)+'</div>':'')+'</div>').join('')+'</div>';
+  }
+  return '<div class="rxbox"><div class="exh"><span>Prescrevo</span><button type="button" class="btn sm" data-a="rx-add">'+ic('plus',14)+' Medicação</button></div>'+
+    (rx.length?rx.map(r=>'<div class="rxrow ed" data-rx="'+r.id+'"><div class="rxgrid"><input class="rxin" list="rxdl" data-rx="'+r.id+'" data-rxf="drug" value="'+esc(r.drug)+'" placeholder="Medicamento" autocomplete="off" aria-label="Medicamento"><input class="rxin" data-rx="'+r.id+'" data-rxf="dose" value="'+esc(r.dose)+'" placeholder="Dose" autocomplete="off" aria-label="Dose"><input class="rxin rxbig" data-rx="'+r.id+'" data-rxf="qty" value="'+esc(r.qty)+'" placeholder="Quantidade" autocomplete="off" aria-label="Quantidade"><button type="button" class="icon-btn sm" data-a="rx-del" data-id="'+r.id+'" aria-label="Remover medicação">'+ic('trash',14)+'</button></div><textarea class="rxin rxusein" rows="1" data-rx="'+r.id+'" data-rxf="use" placeholder="Modo de uso e demais orientações" aria-label="Modo de uso">'+esc(r.use)+'</textarea></div>').join(''):'<div class="muted small">Nenhuma medicação ainda.</div>')+
+    '<datalist id="rxdl">'+bulMeds().map(m=>'<option value="'+esc(m.name)+'">').join('')+'</datalist></div>';
+}
+function bulMeds(){
+  const out=[],seen={};
+  S.notes.filter(n=>n.type==='bula'&&n.kind==='med'&&n.title).forEach(n=>{out.push({name:n.title,id:n.id});seen[n.title.toLowerCase()]=1;});
+  S.notes.filter(n=>n.type==='bula'&&n.kind==='classe').forEach(n=>n.meds.forEach(m=>{if(m.name&&!seen[m.name.toLowerCase()]){out.push({name:m.name,id:n.id});seen[m.name.toLowerCase()]=1;}}));
+  return out.sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
 }
 function objListHTML(n,key,title,ph,edit){
   const arr=n[key]||[];
   if(!edit){const l=arr.filter(x=>String(x).trim());return l.length?'<div class="obj olist"><div class="obj-h">'+esc(title)+'</div>'+l.map(x=>'<div>'+esc(x)+'</div>').join('')+'</div>':'';}
   return '<div class="obj olist" data-olist="'+key+'"><div class="obj-h">'+esc(title)+'</div>'+(arr.length?arr:['']).map((x,i)=>'<textarea class="olt" rows="1" data-ol="'+key+'" data-i="'+i+'" placeholder="'+esc(ph)+'" aria-label="'+esc(title)+'">'+esc(x)+'</textarea>').join('')+'</div>';
 }
+const GAPS={s:['g1','S','O'],o:['g2','O','A'],a:['g3','A','P'],p:['g4','P','Evolução']};
 function casoBodyHTML(n,edit,ed){
   const has=f=>!!(n[f]&&noteText({html:n[f]}));
   const free=(lbl)=>(edit||has('html')||!n.soapOn)?(n.soapOn&&lbl?'<h5 class="soapfree">'+lbl+'</h5>':'')+ed('html','ned',n.soapOn?'Anotações livres sobre o caso…':'Escreva aqui. Use o botão Modo SOAP para organizar o caso em S, O, A e P. Selecione um trecho e use Ctrl+K para ligá-lo a outra nota ou a um documento.'):'';
   if(!n.soapOn)return free();
   let h='';
+  const gap=k=>{
+    const g=GAPS[k],f=g[0];
+    if(edit&&!n.gon[f])return '<div class="soapgap"><button type="button" class="btn sm ghost" data-a="gap-on" data-f="'+f+'">'+ic('plus',13)+' Texto entre '+g[1]+' e '+g[2]+'</button></div>';
+    if(n.gon[f]||has(f)){
+      if(!edit&&!has(f))return '';
+      return '<section class="qsec soapgapsec"><h5 class="soapfree">Entre '+g[1]+' e '+g[2]+(edit?'<button type="button" class="icon-btn sm" data-a="gap-off" data-f="'+f+'" aria-label="Remover este texto" style="margin-left:6px">'+ic('x',13)+'</button>':'')+'</h5>'+ed(f,'ned_'+f,'Texto livre entre '+g[1]+' e '+g[2]+'…')+'</section>';
+    }
+    return '';
+  };
+  const PL=[['req','Solicito'],['rx','Prescrevo'],['enc','Encaminho'],['ori','Oriento']];
+  const planFilled=k=>k==='req'?(n.req||[]).some(x=>x.name||x.why):k==='rx'?(n.rx||[]).some(r=>r.drug||r.dose||r.qty||r.use):(n[k]||[]).some(x=>String(x).trim());
   SOAP_SECS.forEach(sc=>{
-    const k=sc[0],isO=k==='o';
-    const filled=has(k)||(isO&&(n.exams||[]).length);
-    if(!edit&&!filled)return;
-    h+='<section class="qsec soap soap-'+k+'"><h5><b>'+sc[2]+'</b> '+sc[1]+'</h5>'+(edit||has(k)?ed(k,'ned_'+k,sc[3]):'')+(isO?examsHTML(n,edit):'')+'</section>';
+    const k=sc[0],isO=k==='o',isP=k==='p';
+    const filled=has(k)||(isO&&(n.exams||[]).length)||(isP&&PL.some(p=>planFilled(p[0])));
+    if(edit||filled){
+      h+='<section class="qsec soap soap-'+k+'"><h5><b>'+sc[2]+'</b> '+sc[1]+'</h5>'+(edit||has(k)?ed(k,'ned_'+k,sc[3]):'')+(isO?examsHTML(n,edit):'');
+      if(isP){
+        if(edit)h+='<div class="frow plchips">'+PL.map(p=>'<button type="button" class="chip '+(n.pl[p[0]]?'on':'')+'" data-a="pl-toggle" data-k="'+p[0]+'" aria-pressed="'+(n.pl[p[0]]?'true':'false')+'">'+p[1]+'</button>').join('')+'</div>';
+        PL.forEach(p=>{
+          const k2=p[0];if(edit?!n.pl[k2]:!planFilled(k2))return;
+          h+=k2==='req'?reqHTML(n,edit):k2==='rx'?rxHTML(n,edit):'<div class="soapend">'+objListHTML(n,k2,p[1],PLAN_LISTS.find(l=>l[0]===k2)[2],edit)+'</div>';
+        });
+      }
+      h+='</section>';
+    }
+    h+=gap(k);
   });
+  // Evolução: texto livre e os resultados dos exames solicitados
+  const reqs=(n.req||[]).filter(x=>x.name),evoFilled=has('evo')||reqs.some(x=>x.result||(x.params||[]).some(q=>q.value)||(x.att||[]).length);
+  if(edit||evoFilled){
+    h+='<section class="qsec soap soap-e"><h5><b>E</b> Evolução</h5>'+ed('evo','ned_evo','Como a paciente evoluiu depois da conduta…')+
+      (reqs.length?'<div class="exams"><div class="exh"><span>Resultados dos exames solicitados</span></div>'+reqs.map(x=>examHTML(n,x,edit,'req','res')).join('')+'</div>':(edit?'<div class="muted small">Os exames que você incluir em "Solicito" aparecem aqui para receber o resultado.</div>':''))+'</section>';
+  }
   if(!edit&&!h)h='<div class="muted small" style="margin:8px 0">Nenhum campo do SOAP preenchido ainda. Toque em editar para preencher.</div>';
   h+='<div class="soapend">'+CASO_LISTS.map(l=>objListHTML(n,l[0],l[1],l[2],edit)).join('')+'</div>';
   return h+free('Anotações livres');
@@ -4133,7 +4379,7 @@ const curNote=()=>UI.nview&&UI.nview.type==='note'?noteById(UI.nview.id):null;
 function autosize(t){if(t&&t.scrollHeight){t.style.height='auto';t.style.height=t.scrollHeight+'px';}}
 function tidyCaso(n){
   if(!n||n.type!=='caso')return false;let ch=false;
-  CASO_LISTS.forEach(l=>{const a=(n[l[0]]||[]),b=a.map(x=>String(x).trim()).filter(Boolean);if(a.length!==b.length||a.some((x,i)=>x!==b[i])){n[l[0]]=b;ch=true;}});
+  CASO_LISTS.concat(PLAN_LISTS).forEach(l=>{const a=(n[l[0]]||[]),b=a.map(x=>String(x).trim()).filter(Boolean);if(a.length!==b.length||a.some((x,i)=>x!==b[i])){n[l[0]]=b;ch=true;}});
   return ch;
 }
 const mkBlank=()=>{const d=document.createElement('div');d.appendChild(document.createElement('br'));return d;};
@@ -4283,27 +4529,60 @@ function olInput(t){
   const n=curNote();if(!n)return;const k=t.dataset.ol,i=Number(t.dataset.i);n[k]=n[k]||[];while(n[k].length<=i)n[k].push('');n[k][i]=t.value;autosize(t);n.updated=Date.now();save();
 }
 function olRefresh(n,key,focusI,atEnd){
-  const box=$('.olist[data-olist="'+key+'"]'),def=CASO_LISTS.find(l=>l[0]===key);if(!box||!def)return;
+  const box=$('.olist[data-olist="'+key+'"]'),def=CASO_LISTS.concat(PLAN_LISTS).find(l=>l[0]===key);if(!box||!def)return;
   box.outerHTML=objListHTML(n,key,def[1],def[2],true);
   const tas=$$('.olist[data-olist="'+key+'"] .olt');tas.forEach(autosize);
   const ta=tas[focusI];if(ta){ta.focus();const pos=atEnd?ta.value.length:0;try{ta.setSelectionRange(pos,pos);}catch(x){}}
 }
 function exInput(t){
-  const n=curNote();if(!n)return;const x=(n.exams||[]).find(e=>e.id===t.dataset.ex);if(!x)return;const f=t.dataset.exf;
-  if(f==='name'||f==='result')x[f]=t.value;
+  const n=curNote();if(!n)return;const x=exFind(n,t.dataset.ex);if(!x)return;const f=t.dataset.exf;
+  if(f==='name'||f==='result'||f==='ref'||f==='why')x[f]=t.value;
   else{const q=(x.params||[]).find(p=>p.id===t.dataset.pid);if(!q)return;q[{pname:'name',pval:'value',pref:'ref'}[f]]=t.value;}
+  if(t.tagName==='TEXTAREA')autosize(t);
   n.updated=Date.now();save();
   const sm=t.closest('.exam')&&t.closest('.exam').querySelector('.exsum');
   if(sm){const np=x.params.filter(q=>q.name||q.value).length;sm.textContent=x.kind==='par'?(np+(np===1?' parâmetro':' parâmetros')):String(x.result||'').replace(/\s+/g,' ').trim().slice(0,70);}
 }
+function rxInput(t){
+  const n=curNote();if(!n)return;const r=(n.rx||[]).find(x=>x.id===t.dataset.rx);if(!r)return;const f=t.dataset.rxf;r[f]=t.value;
+  if(f==='drug'){const m=bulMeds().find(x=>x.name.toLowerCase()===t.value.trim().toLowerCase());r.bid=m?m.id:'';}
+  if(t.tagName==='TEXTAREA')autosize(t);
+  n.updated=Date.now();save();
+}
+function bfInput(t){
+  const n=curNote();if(!n||n.type!=='bula')return;const k=t.dataset.bf,mid=t.dataset.bm;
+  if(mid)n.bf[k].meds[mid]=t.value;else n.bf[k].gen=t.value;
+  autosize(t);n.updated=Date.now();save();
+}
+function attachFile(x,file){
+  const n=curNote();if(!n||!file)return;
+  const done=data=>{x.att.push({id:uid(),name:file.name||'Anexo',type:/^data:application\/pdf/.test(data)?'pdf':'img',data});n.updated=Date.now();save();renderMain();};
+  if(file.type==='application/pdf'||/\.pdf$/i.test(file.name)){
+    if(file.size>1600000){toast('PDF grande demais (máx. 1,5 MB). Reduza o arquivo e tente de novo.');return;}
+    const fr=new FileReader();fr.onload=()=>done(String(fr.result).replace(/^data:[^;,]*/,'data:application/pdf'));fr.readAsDataURL(file);
+  }else if(/^image\//.test(file.type)){
+    compressImage(file,{max:1400,limit:380000}).then(r=>done(r.src)).catch(e=>toast(e.message));
+  }else toast('Use uma imagem ou um PDF.');
+}
 Object.assign(ACT,{
   'soap-toggle'(){const n=curNote();if(!n)return;flushNote();n.soapOn=!n.soapOn;n.updated=Date.now();save();renderMain();},
-  'ex-add'(){const n=curNote();if(!n)return;flushNote();const x={id:uid(),name:'',kind:'res',result:'',params:[]};n.exams.push(x);UI.exOpen[x.id]=true;n.updated=Date.now();save();renderMain();const i=$('.exam[data-exam="'+x.id+'"] .exname');if(i)i.focus();},
-  'ex-toggle'(el){const id=el.dataset.id;if(UI.nview&&UI.nview.edit)flushNote();UI.exOpen[id]=!UI.exOpen[id];renderMain();},
-  'ex-del'(el){const n=curNote();if(!n)return;const x=n.exams.find(e=>e.id===el.dataset.id);if(!x)return;flushNote();askConfirm('Excluir o exame "'+exLabel(x)+'"?','O resultado e os parâmetros deste exame serão removidos.',()=>{n.exams=n.exams.filter(e=>e!==x);delete UI.exOpen[x.id];n.updated=Date.now();save();closeModal();renderMain();});},
-  'ex-kind'(el){const n=curNote();if(!n)return;const x=n.exams.find(e=>e.id===el.dataset.id);if(!x)return;flushNote();x.kind=el.dataset.v;if(x.kind==='par'&&!x.params.length)x.params.push({id:uid(),name:'',value:'',ref:''});n.updated=Date.now();save();renderMain();},
-  'ex-padd'(el){const n=curNote();if(!n)return;const x=n.exams.find(e=>e.id===el.dataset.id);if(!x)return;flushNote();const q={id:uid(),name:'',value:'',ref:''};x.params.push(q);n.updated=Date.now();save();renderMain();const i=$('input[data-pid="'+q.id+'"]');if(i)i.focus();},
-  'ex-pdel'(el){const n=curNote();if(!n)return;const x=n.exams.find(e=>e.id===el.dataset.id);if(!x)return;flushNote();x.params=x.params.filter(q=>q.id!==el.dataset.pid);n.updated=Date.now();save();renderMain();}
+  'ex-add'(el){const n=curNote();if(!n)return;flushNote();const lk=el.dataset.lk==='req'?'req':'exams';const x=normExam({});exList(n,lk).push(x);UI.exOpen[(lk==='req'?'req':'full')+x.id]=true;n.updated=Date.now();save();renderMain();const i=$('.exam[data-exam="'+x.id+'"] .exname');if(i)i.focus();},
+  'ex-toggle'(el){const k=(el.dataset.m||'full')+el.dataset.id;if(UI.nview&&UI.nview.edit)flushNote();UI.exOpen[k]=!UI.exOpen[k];renderMain();},
+  'ex-del'(el){const n=curNote();if(!n)return;const lk=el.dataset.lk==='req'?'req':'exams',x=exList(n,lk).find(e=>e.id===el.dataset.id);if(!x)return;flushNote();askConfirm('Excluir o exame "'+exLabel(x)+'"?','O resultado, a justificativa e os anexos deste exame serão removidos.',()=>{n[lk]=n[lk].filter(e=>e!==x);n.updated=Date.now();save();closeModal();renderMain();});},
+  'ex-kind'(el){const n=curNote();if(!n)return;const x=exFind(n,el.dataset.id);if(!x)return;flushNote();x.kind=el.dataset.v;if(x.kind==='par'&&!x.params.length)x.params.push({id:uid(),name:'',value:'',ref:'',hide:false});n.updated=Date.now();save();renderMain();},
+  'ex-padd'(el){const n=curNote();if(!n)return;const x=exFind(n,el.dataset.id);if(!x)return;flushNote();const q={id:uid(),name:'',value:'',ref:'',hide:false};x.params.push(q);n.updated=Date.now();save();renderMain();const i=$('input[data-pid="'+q.id+'"]');if(i)i.focus();},
+  'ex-pdel'(el){const n=curNote();if(!n)return;const x=exFind(n,el.dataset.id);if(!x)return;flushNote();x.params=x.params.filter(q=>q.id!==el.dataset.pid);n.updated=Date.now();save();renderMain();},
+  'ex-hide'(el){const n=curNote();if(!n)return;const x=exFind(n,el.dataset.id);if(!x)return;flushNote();if(el.dataset.pid){const q=x.params.find(p=>p.id===el.dataset.pid);if(q)q.hide=!q.hide;}else x.hide=!x.hide;n.updated=Date.now();save();renderMain();},
+  'ex-rev'(el){UI.exRev=UI.exRev||{};UI.exRev[el.dataset.k]=!UI.exRev[el.dataset.k];renderMain();},
+  'ex-attach'(el){UI.exAtt=el.dataset.id;const f=$('#exFile');if(f)f.click();},
+  'ex-adel'(el){const n=curNote();if(!n)return;const x=exFind(n,el.dataset.id);if(!x)return;flushNote();x.att=x.att.filter(a=>a.id!==el.dataset.aid);n.updated=Date.now();save();renderMain();},
+  'ex-pdf'(el){const n=curNote();if(!n)return;const x=exFind(n,el.dataset.id),a=x&&x.att.find(y=>y.id===el.dataset.aid);if(!a)return;
+    try{const b=atob(a.data.split(',')[1]),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);const url=URL.createObjectURL(new Blob([u],{type:'application/pdf'}));window.open(url,'_blank');setTimeout(()=>URL.revokeObjectURL(url),60000);}catch(e){toast('Não consegui abrir o PDF.');}},
+  'gap-on'(el){const n=curNote();if(!n)return;flushNote();n.gon[el.dataset.f]=true;n.updated=Date.now();save();renderMain();const e=$('.ned[data-f="'+el.dataset.f+'"]');if(e)e.focus();},
+  'gap-off'(el){const n=curNote();if(!n)return;flushNote();const f=el.dataset.f;const go=()=>{n[f]='';n.gon[f]=false;n.updated=Date.now();save();closeModal();renderMain();};if(n[f]&&noteText({html:n[f]}))askConfirm('Remover este texto?','O conteúdo escrito entre as partes será apagado.',go);else go();},
+  'pl-toggle'(el){const n=curNote();if(!n)return;flushNote();const k=el.dataset.k;n.pl[k]=!n.pl[k];if(n.pl[k]){if(k==='rx'&&!n.rx.length)n.rx.push({id:uid(),drug:'',dose:'',qty:'',use:'',bid:''});if(k==='req'&&!n.req.length)n.req.push(normExam({}));}n.updated=Date.now();save();renderMain();},
+  'rx-add'(){const n=curNote();if(!n)return;flushNote();const r={id:uid(),drug:'',dose:'',qty:'',use:'',bid:''};n.rx.push(r);n.updated=Date.now();save();renderMain();const i=$('input[data-rx="'+r.id+'"]');if(i)i.focus();},
+  'rx-del'(el){const n=curNote();if(!n)return;flushNote();n.rx=n.rx.filter(r=>r.id!==el.dataset.id);n.updated=Date.now();save();renderMain();}
 });
 /* ----- atalhos de digitação: "* " vira bullet, setas e símbolos, sub-bullets, tópicos ----- */
 const ARROWS=[['-->','↦'],['==>','⇒'],['>=','≥']];
@@ -4826,7 +5105,7 @@ function gsBuild(){
   S.goals.forEach(g=>P('goal',g.id,'Objetivos','target',g.title,'',HNAME[g.horizon]||''));
   S.dates.forEach(d=>P('date',d.id,'Datas e prazos','clock',d.title,[d.notes,d.cat,dcatChain(d.catId).map(c=>c.name).join(' ')].join(' '),d.date?fmtDM(d.date):''));
   S.links.forEach(l=>P('link',l.id,'Links','link',l.title,[l.url,l.desc,l.notes].join(' '),hostOf(l.url)));
-  S.notes.forEach(n=>P('note',n.id,n.type==='questao'?'Questões':n.type==='caso'?'Casos clínicos':n.type==='fluxo'?'Fluxogramas':'Notas',n.type==='questao'?'help':n.type==='caso'?'pulse':n.type==='fluxo'?'grid':'note',n.title||'Sem título',noteText(n)+' '+noteFieldsText(n)+' '+gsAnnot(n)+(n.type==='questao'?' '+qOrigin(n)+' '+n.qgroup:'')+' '+noteTags(n).map(t=>'#'+t).join(' '),folderPath(n.folderId).join(' › ')));
+  S.notes.forEach(n=>P('note',n.id,n.type==='questao'?'Questões':n.type==='caso'?'Casos clínicos':n.type==='bula'?'Bulário':n.type==='fluxo'?'Fluxogramas':'Notas',n.type==='questao'?'help':n.type==='caso'?'pulse':n.type==='bula'?'pill':n.type==='fluxo'?'grid':'note',n.title||'Sem título',noteText(n)+' '+noteFieldsText(n)+' '+gsAnnot(n)+(n.type==='questao'?' '+qOrigin(n)+' '+n.qgroup:'')+' '+noteTags(n).map(t=>'#'+t).join(' '),folderPath(n.folderId).join(' › ')));
   S.pdfs.forEach(p=>P('pdf',p.id,'PDFs','file',p.title,gsFlat(p.annots,SK).join(' '),'PDF'));
   S.decks.forEach(d=>P('deck',d.id,'Baralhos','cards',d.name,'',S.cards.filter(c=>c.deckId===d.id).length+' cards'));
   S.cards.forEach(c=>{const dk=deckById(c.deckId);if(dk)P('deck',dk.id,'Cards de estudo','cards',gsPlain(c.front||c.text||'')||'Card',[gsPlain(c.back),gsPlain(c.extra)].join(' '),dk.name);});
@@ -4983,6 +5262,10 @@ function notasInput(e){ // campos da nota (título, nome da contagem, busca)
   if(t.classList&&t.classList.contains('ned')&&!t.closest('#fCard')){onNoteInput();return true;}
   if(t.id==='fxq'){const l=$('#fxList');if(l)l.innerHTML=fxRefListHTML(t.value);return true;}
   if(t.dataset&&t.dataset.exf){exInput(t);return true;}
+  if(t.dataset&&t.dataset.rxf){rxInput(t);return true;}
+  if(t.dataset&&t.dataset.bf!==undefined){bfInput(t);return true;}
+  if(t.dataset&&t.dataset.bmn){const n=curNote(),m=n&&n.meds.find(x=>x.id===t.dataset.bmn);if(m){m.name=t.value;n.updated=Date.now();save();}return true;}
+  if(t.id==='bcls'){const n=curNote();if(n){n.cls=t.value;n.updated=Date.now();save();}return true;}
   if(t.classList&&t.classList.contains('olt')){olInput(t);return true;}
   if(t.id==='nq'){UI.nq=t.value;const c=$('#ncards');if(c)c.innerHTML=nCardsHTML();return true;}
   if(t.id==='citeq'){$('#citeList').innerHTML=citeListHTML(t.value);return true;}
@@ -5004,6 +5287,16 @@ Object.assign(ACT,{
   'n-new'(){const n={id:uid(),type:'nota',title:'',html:'',folderId:(UI.nf&&UI.nf!=='__none')?UI.nf:'',catId:'',cd:null,created:Date.now(),updated:Date.now()};S.notes.push(n);save();UI.nview={type:'note',id:n.id,edit:true,focusTitle:true};renderMain();window.scrollTo(0,0);},
   'n-new-caso'(){const n=normNote({id:uid(),type:'caso',title:'',html:'',folderId:(UI.nf&&UI.nf!=='__none')?UI.nf:'',catId:'',cd:null,created:Date.now(),updated:Date.now()});S.notes.push(n);save();UI.nview={type:'note',id:n.id,edit:true,focusTitle:true};renderMain();window.scrollTo(0,0);},
   'n-new-q'(){openQuestionOrigin();},
+  'bula-kind'(el){const n=curNote();if(!n)return;flushNote();n.kind=el.dataset.v==='classe'?'classe':'med';n.updated=Date.now();save();renderMain();},
+  'bula-madd'(){const n=curNote();if(!n)return;flushNote();const m={id:uid(),name:''};n.meds.push(m);n.updated=Date.now();save();renderMain();const i=$('input[data-bmn="'+m.id+'"]');if(i)i.focus();},
+  'bula-mdel'(el){const n=curNote();if(!n)return;flushNote();n.meds=n.meds.filter(m=>m.id!==el.dataset.id);n.updated=Date.now();save();renderMain();},
+  'bula-cards'(){const n=curNote();if(!n)return;flushNote();const cs=bulaCardsFor(n);if(!cs.length){toast('Preencha algum campo do Bulário antes de gerar os flashcards.');return;}
+    let d=S.decks.find(x=>x.noteId===n.id);const now=Date.now();
+    if(!d){d={id:uid(),name:'Bulário · '+(n.title||'Sem nome'),folderId:n.folderId||'',catId:n.catId||'',goalId:'',actId:'',noteId:n.id,created:now,updated:now};S.decks.push(d);}
+    const have={};S.cards.filter(c=>c.deckId===d.id).forEach(c=>{have[c.front]=1;});let add=0;
+    cs.forEach(c=>{if(have[c.front])return;S.cards.push({id:uid(),deckId:d.id,s:{},created:now,updated:now,front:c.front,back:c.back,frontImg:'',backImg:'',text:'',extra:'',okind:'image',image:'',rects:[],table:[],occ:[],hdr:true});add++;});
+    d.updated=now;save();renderMain();toast(add?add+(add===1?' flashcard criado':' flashcards criados')+' no baralho "'+d.name+'".':'Todos os flashcards deste Bulário já existem.');},
+  'n-new-bula'(){const n=normNote({id:uid(),type:'bula',kind:'med',title:'',html:'',folderId:(UI.nf&&UI.nf!=='__none')?UI.nf:'',catId:'',cd:null,created:Date.now(),updated:Date.now()});S.notes.push(n);save();UI.nview={type:'note',id:n.id,edit:true,focusTitle:true};renderMain();window.scrollTo(0,0);},
   'tag-go'(el){const t=el.dataset.t||'';closeModal();UI.tab='notas';UI.nsub='notas';UI.nview=null;UI.qgrp='';UI.ntype='';UI.nq=t?'#'+t:'';renderTabs();renderMain();window.scrollTo(0,0);},
   'q-grp'(el){UI.qgrp=el.dataset.v;renderMain();},
   'q-grp-ren'(){const g=UI.qgrp;if(!g||g==='__none')return;askText('Renomear grupo',g,v=>{questions().forEach(q=>{if(q.qgroup===g){q.qgroup=v;q.updated=Date.now();}});UI.qgrp=v;save();renderMain();});},
@@ -5013,7 +5306,7 @@ Object.assign(ACT,{
   'qt-next'(){qtNext();},
   'qt-stop'(){closeModal();UI.qt=null;},
   'qt-open-q'(el){closeModal();UI.qt=null;UI.tab='notas';UI.nsub='notas';UI.nview={type:'note',id:el.dataset.id,edit:false};renderTabs();renderMain();window.scrollTo(0,0);},
-  'n-open'(el){flushNote();UI.exOpen={};const k=el.dataset.k;UI.nview={type:(k==='questao'||k==='caso'||k==='fluxo')?'note':k,id:el.dataset.id,edit:false};renderMain();window.scrollTo(0,0);},
+  'n-open'(el){flushNote();UI.exOpen={};const k=el.dataset.k;UI.nview={type:(k==='questao'||k==='caso'||k==='fluxo'||k==='bula')?'note':k,id:el.dataset.id,edit:false};renderMain();window.scrollTo(0,0);},
   'n-sub'(el){flushNote();pdfLeave();studyStop();UI.nview=null;UI.nsub=el.dataset.v;renderMain();},
   'n-type'(el){UI.ntype=el.dataset.v;UI.qgrp='';renderMain();},
   'q-reveal'(el){const a=$('#qans');if(!a)return;a.hidden=!a.hidden;el.innerHTML=ic('eye',15)+(a.hidden?' Mostrar resposta':' Ocultar resposta');},
@@ -5168,6 +5461,11 @@ document.addEventListener('drop',e=>{
   if(f){e.preventDefault();insertImageFile(f);}
 });
 document.addEventListener('input',e=>{if(e.target&&e.target.id==='ncolorPick')noteColor(e.target.value);});
+document.addEventListener('change',e=>{const t=e.target;if(!t||!t.dataset||!UI.nview||UI.nview.type!=='note'||!UI.nview.edit)return;
+  const n=curNote();if(!n)return;
+  if(t.dataset.bmn!==undefined||(t.dataset.exf==='name'&&(n.req||[]).some(x=>x.id===t.dataset.ex))){flushNote();renderMain();}
+});
+$('#exFile').addEventListener('change',e=>{const f=e.target.files[0];e.target.value='';const n=curNote(),x=n&&UI.exAtt&&exFind(n,UI.exAtt);if(f&&x)attachFile(x,f);});
 $('#imgFile').addEventListener('change',e=>{const f=e.target.files[0];e.target.value='';if(f)insertImageFile(f);});
 Object.assign(ACT,{
   'n-size'(el){noteSize(Number(el.dataset.d));},
@@ -5585,7 +5883,8 @@ function computeAttention(){
 }
 function attnHTML(){
   if(!ATTN.length)return '';
-  return '<section class="attn"><div class="attn-h">'+ic('bell',16)+'<b>'+ATTN.length+(ATTN.length===1?' pendência em destaque':' pendências em destaque')+'</b><span class="muted small">Conclua, ajuste o prazo ou reagende.</span></div><div class="attn-row">'+
+  if(S.prefs.attnHide)return '<button class="attnmin" data-a="attn-toggle">'+ic('eye',14)+' Mostrar '+ATTN.length+(ATTN.length===1?' Pendência':' Pendências')+'</button>';
+  return '<section class="attn"><div class="attn-h">'+ic('bell',16)+'<b>'+ATTN.length+(ATTN.length===1?' pendência em destaque':' pendências em destaque')+'</b><span class="muted small">Conclua, ajuste o prazo ou reagende.</span><button class="btn sm ghost" style="margin-left:auto" data-a="attn-toggle">'+ic('eyeOff',14)+' Ocultar</button></div><div class="attn-row">'+
     ATTN.map(x=>'<div class="acard"><div class="at1"><b>'+esc(x.t.title)+'</b>'+dueChip(x.t)+'</div>'+x.reasons.map(r=>'<div class="small muted">'+esc(r)+'</div>').join('')+
       '<div class="aact"><button class="btn sm primary" data-a="att-done" data-id="'+x.t.id+'">'+ic('check',13)+' Concluir</button><button class="btn sm" data-a="view-task" data-id="'+x.t.id+'">Ver</button><button class="btn sm" data-a="att-plus1" data-id="'+x.t.id+'">Prazo +1 dia</button><button class="btn sm" data-a="sched-task" data-id="'+x.t.id+'">Reagendar</button><button class="btn sm ghost" data-a="att-snooze" data-id="'+x.t.id+'">Hoje não</button></div></div>').join('')+'</div></section>';
 }
@@ -6715,7 +7014,7 @@ function printNoteHTML(n,o){
   if(o.folder&&n.folderId&&folderPath(n.folderId).length)meta.push('<span><b>Pasta</b> '+esc(folderPath(n.folderId).join(' › '))+'</span>');
   if(o.cat&&n.catId&&catPath(n.catId).length)meta.push('<span><b>Categoria</b> '+esc(catPath(n.catId).map(c=>c.name).join(' › '))+'</span>');
   if(o.date&&n.updated)meta.push('<span><b>Atualizada em</b> '+fmt(n.updated)+'</span>');
-  const head='<header class="prh"><h1>'+esc(n.title||(n.type==='fluxo'?'Fluxograma':n.type==='questao'?'Questão':n.type==='caso'?'Caso clínico':'Sem título'))+'</h1>'+(meta.length?'<div class="prm">'+meta.join('')+'</div>':'')+'</header>';
+  const head='<header class="prh"><h1>'+esc(n.title||(n.type==='fluxo'?'Fluxograma':n.type==='questao'?'Questão':n.type==='caso'?'Caso clínico':n.type==='bula'?'Bulário':'Sem título'))+'</h1>'+(meta.length?'<div class="prm">'+meta.join('')+'</div>':'')+'</header>';
   if(n.type==='fluxo')return head+fxPrintHTML(n);
   let body;
   if(n.type==='nota'){
@@ -6743,7 +7042,7 @@ function printNote(id){ // abre as opções de impressão
     '<div class="seg prpre">'+[['compact','Compacto'],['normal','Normal'],['comfy','Confortável']].map(x=>'<button type="button" data-a="pr-preset" data-v="'+x[0]+'">'+x[1]+'</button>').join('')+'</div>'+
     rg('fs','Tamanho do texto',8,16,0.5,' pt')+rg('lh','Espaço entre linhas',1.2,2,0.05,'')+rg('m','Margens',5,30,1,' mm')+
     '<label class="prrow"><span>Orientação</span><select data-pr="orient"><option value="portrait" '+(o.orient==='portrait'?'selected':'')+'>Retrato</option><option value="landscape" '+(o.orient==='landscape'?'selected':'')+'>Paisagem</option></select></label>'+
-    '<label class="prrow"><span>Fonte do texto</span><select data-pr="serif"><option value="" '+(!o.serif?'selected':'')+'>Montserrat</option><option value="1" '+(o.serif?'selected':'')+'>Serifada</option></select></label>'+
+    '<label class="prrow"><span>Fonte do texto</span><select data-pr="serif"><option value="" '+(!o.serif?'selected':'')+'>Poppins</option><option value="1" '+(o.serif?'selected':'')+'>Serifada</option></select></label>'+
     '<div class="prchk">'+ck('folder','Pasta')+ck('cat','Categoria')+ck('date','Data')+ck('obj','Objetivos em destaque')+ck('fn','Notas de rodapé')+ck('cm','Comentários')+ck('img','Imagens')+'</div>'+
     '</div><div class="prpv"><div class="pvwrap" id="pvwrap"><div class="pvpage" id="pvpage"></div></div></div></div>'+
     '<div class="ff"><button class="btn" data-a="close">Cancelar</button><button class="btn primary" data-a="pr-go">'+ic('printer',15)+' Imprimir / salvar PDF</button></div>',true);
@@ -6791,7 +7090,7 @@ function buildPrintSheet(){
 function printFallback(){
   const css=$$('style').map(s=>s.textContent).join('\n'),w=window.open('','_blank');
   if(!w){toast('O navegador bloqueou a janela de impressão. Tente Ctrl+P ou permita pop-ups para este site.');return;}
-  w.document.write('<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><title>'+(PRINT_JOB?'Nota':'Semana')+'</title><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"><style>'+css+'</style></head><body>'+$('#printSheet').outerHTML+'<script>window.onload=function(){setTimeout(function(){window.print();},400);};<\/script></body></html>');
+  w.document.write('<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><title>'+(PRINT_JOB?'Nota':'Semana')+'</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"><style>'+css+'</style></head><body>'+$('#printSheet').outerHTML+'<script>window.onload=function(){setTimeout(function(){window.print();},400);};<\/script></body></html>');
   w.document.close();
 }
 /* ----- imprimir a aba (ou subaba) que está na tela ----- */
@@ -8286,7 +8585,7 @@ function docLinksHTML(d){
   return '<div class="dnotes">'+(own.length?'<span class="muted small">Notas</span>'+own.map(n=>refPill('note',n.id,n.title||'Sem título')).join(''):'')+
     (cited.length?'<span class="muted small">Citado em</span>'+cited.map(n=>refPill('note',n.id,n.title||'Sem título')).join(''):'')+'</div>';
 }
-const noteItems=()=>S.notes.map(n=>({id:n.id,label:n.title||'Sem título',sub:n.type==='questao'?'questão':n.type==='caso'?'caso clínico':''}));
+const noteItems=()=>S.notes.map(n=>({id:n.id,label:n.title||'Sem título',sub:n.type==='questao'?'Questão':n.type==='caso'?'Caso Clínico':n.type==='bula'?'Bulário':''}));
 Object.assign(ACT,{
   'n-align'(el){noteAlign(el.dataset.v);},
   'n-space'(){toggleSpaceBox();},
@@ -9027,6 +9326,7 @@ function pmHTML(){
     '<details class="pmcfg"><summary>Ajustar Tempos</summary><div class="pmcfgg">'+[['focus','Foco (min)'],['short','Pausa Curta (min)'],['long','Pausa Longa (min)'],['every','Pausa Longa a Cada (ciclos)']].map(x=>'<label class="f"><span>'+x[1]+'</span><input type="number" min="1" max="180" data-pmc="'+x[0]+'" value="'+p.cfg[x[0]]+'"></label>').join('')+'</div></details></section>';
 }
 Object.assign(ACT,{
+  'attn-toggle'(){S.prefs.attnHide=!S.prefs.attnHide;save();renderMain();},
   'pm-toggle'(){const p=pmGet(),c=p.cur;if(c.running){c.left=pmLeft(p);c.running=false;c.endsAt=0;}else{if(c.left<=0)c.left=pmDur(p,c.phase);c.running=true;c.endsAt=Date.now()+c.left*1000;}save();renderMain();},
   'pm-reset'(){const p=pmGet(),c=p.cur;c.running=false;c.endsAt=0;c.left=pmDur(p,c.phase);save();renderMain();},
   'pm-skip'(){const p=pmGet(),c=p.cur;c.phase=c.phase==='focus'?'short':'focus';c.running=false;c.endsAt=0;c.left=pmDur(p,c.phase);save();renderMain();},
